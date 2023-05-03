@@ -4,4 +4,6 @@ This is a conflict test
 
 This is a change
 
-Change reviewed!
+Change reviewed
+
+Merge Resolved
