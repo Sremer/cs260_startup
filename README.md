@@ -5,7 +5,10 @@
 ## Description deliverable
 
 ### Elevator pitch
-Have you ever wanted to test how well you know a song's lyrics or see which one of your friends knows a song the best? The *insert name* application lets you race against the clock and against your friends to see how fast you can type out a song's lyrics. You can race your friends in real time and can even see your past scores. You will be able to pick any song and what percentage of the song you want to type. 
+Have you ever wanted to test how well you know a song's lyrics or see which one of your friends knows a song the best? The Ditty application lets you race against the clock and against your friends to see how fast you can type out a song's lyrics. You can race your friends in real time and can even see your past scores. You will be able to pick any song and what percentage of the song you want to type. 
+
+### Design
+![Mock](website_idea.JPG)
 
 ### Key features
 - Secure login over HTTPS
@@ -17,7 +20,7 @@ Have you ever wanted to test how well you know a song's lyrics or see which one 
 
 ### Technologies
 I am going to use the required technologies in the following ways.
-- **HTML** - Uses correct HTML structure for application. Four HTML pages. One for login, song selection, game play, and to see past scores. Hyperlinks to choic artifact.
+- **HTML** - Uses correct HTML structure for application. Four HTML pages. One for login, song selection, game play, and to see past scores. Hyperlinks to choice artifact.
 - **CSS** - Application styling that looks good on different screen sizes, uses good whitespace, color choice and contrast.
 - **JavaScript** - Provides login, choice of song display, real time status of typed lyrics for both the user and the friend.
 - **Service** - Backend service with endpoints for:
