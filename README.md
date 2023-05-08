@@ -35,4 +35,4 @@ I am going to use the required technologies in the following ways.
 - **WebSocket**
     - Each user is updated with the other user's current progress.
     - Makes a call to a the *Genuis API* to get song lyrics.
-- **React** Application ported to use the React web framework. 
+- **React** - Application ported to use the React web framework. 
