@@ -18,4 +18,18 @@ Have you ever wanted to test how well you know a song's lyrics or see which one 
 ### Technologies
 I am going to use the required technologies in the following ways.
 - **HTML** - Uses correct HTML structure for application. Four HTML pages. One for login, song selection, game play, and to see past scores. Hyperlinks to choic artifact.
-- **CSS** - 
+- **CSS** - Application styling that looks good on different screen sizes, uses good whitespace, color choice and contrast.
+- **JavaScript** - Provides login, choice of song display, real time status of typed lyrics for both the user and the friend.
+- **Service** - Backend service with endpoints for:
+    - login
+    - retrieving lyrics
+    - updating lyric progress
+    - retrieving lyric progress
+    - updating new scores
+    - retrieving old scores
+- **DB** - Stores users, lyrics, user's lyrics progress, and scores in database. 
+- **Login** - Register and login users. Credentials securely stored in database. Can't play or see scores until authenticated. 
+- **WebSocket**
+    - Each user is updated with the other user's current progress.
+    - Makes a call to a the *Genuis API* to get song lyrics.
+- **React** Application ported to use the React web framework. 
