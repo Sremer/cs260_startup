@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Ditty</title>
+    </head>
+    
+    <body>
+        <header>
+            <h1>SELECT A SONG</h1>
+            <nav>
+                <div><a href="index.html">Login</a></div>
+                <div><a href="select.html">Song selection</a></div>
+                <div><a href="play.html">Play</a></div>
+                <div><a href="scores.html">Scores</a></div>
+            </nav>
+        </header>
+
+        <main>
+            <p>
+            <form method="post">
+                <div><label for="text">Song title</label>
+                <input type="text" id="songTitle" name="varSongTitle" placeholder="Song title"/> 
+                <label type="select">Percent of song</label>
+                <select id="select" name="varPercent">
+                    <option>25</option>
+                    <option selected>50</option>
+                    <option>75</option>
+                    <option>100</option>
+                </select></div>
+                <div><button type="submit">Select</button></div>
+            </form>
+
+            <p>Challenge a friend</p>
+
+            <form action="play.html" method="post">
+                <div><label for="text">Username</label>
+                <input type="text" id="friendUsername" name="varFriendUsername" placeholder="Username"/></div>
+                <div><button type="submit">Challenge</button></div>
+            </form>
+            </p>
+        </main>
+
+        <footer>
+            <div>Seth Remer</div>
+            <div><a href="https://github.com/Sremer/cs260_startup">GitHub</a></div>
+        </footer>
+
+    </body>
+
+</html>
