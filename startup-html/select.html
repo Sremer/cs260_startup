@@ -21,7 +21,6 @@
         </header>
 
         <main>
-            <p>
             <form method="get">
                 <div><label for="text">Song title</label>
                 <input type="text" id="songTitle" name="varSongTitle" placeholder="Song title"/> 
@@ -37,12 +36,15 @@
 
             <p>Challenge a friend</p>
 
-            <form action="play.html" method="post">
+            <form action="play.html" method="get">
                 <div><label for="text">Username</label>
                 <input type="text" id="friendUsername" name="varFriendUsername" placeholder="Username"/></div>
                 <div><button type="submit">Challenge</button></div>
             </form>
-            </p>
+            <br>
+            <form action="scores.html" method="get">
+                <button type="submit">Scores</button>
+            </form>
         </main>
 
         <footer>
