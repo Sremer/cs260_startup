@@ -22,10 +22,10 @@
 
         <main>
             <form method="get">
-                <div><label for="search">Song title</label>
+                <div><label for="songTitle">Song title</label>
                 <input type="search" id="songTitle" name="varSongTitle" placeholder="Song title" required/> 
-                <label type="select">Percent of song</label>
-                <select id="select" name="varPercent">
+                <label for="percentSelect">Percent of song</label>
+                <select id="percentSelect" name="varPercent">
                     <option>25</option>
                     <option selected>50</option>
                     <option>75</option>
@@ -37,7 +37,7 @@
             <p>Challenge a friend</p>
 
             <form action="play.html" method="get">
-                <div><label for="text">Username</label>
+                <div><label for="friendUsername">Username</label>
                 <input type="text" id="friendUsername" name="varFriendUsername" placeholder="Username"/></div>
                 <div><button type="submit">Challenge</button></div>
             </form>
