@@ -15,27 +15,27 @@
                 <div><a href="play.html">Play</a></div>
                 <div><a href="scores.html">Scores</a></div>
             </nav>
-            <hr />
+            <hr>
         </header>
 
         <main>
             <form action="select.html" method="get">
                 <button type="submit">QUIT</button>
             </form>
-            <br />
+            <br>
             <div>
                 <label id="friendUsernameLabel" type="text">Friend</label>
                 <input type="number" id="friendPercentage" value="00" readonly/>
             </div>
-            <br />
+            <br>
             <div>
                 <label id="timer" type="timer">Timer</label>
                 <input type="time" id="timer" name="gameTimer" readonly/>
                 <label id="percent">Percent done with song</label>
                 <input type="number" id="percent" name="currentUserPercent" value="00" readonly/>
             </div>
-            <br />
-            <svg width="600" height="360">
+            <br>
+            <svg width="600" height="330">
                 <rect x="10" y="10" rx="20" ry="20" width="500" height="300"
                 style="fill:grey;stroke:black;stroke-width:5;opacity:0.5"/>
 
@@ -59,10 +59,14 @@
                 style="fill:grey;stroke:black;stroke-width:5;opacity:0.5"/>
                 <text fill="#ffffff" font-size="15" font-family="Verdana" x="272" y="40">_ _</text>
             </svg>
+            <div>
+                <label for="nextWord">Next word</label>
+                <input type="text" id="nextWord" name="varNextWord"/>
+            </div>
         </main>
 
         <footer>
-            <hr />
+            <hr>
             <div>Seth Remer</div>
             <div><a href="https://github.com/Sremer/cs260_startup">GitHub</a></div>
         </footer>
