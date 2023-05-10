@@ -4,33 +4,26 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="style.css"/>
         <title>Ditty</title>
     </head>
     
     <body>
         <header>
             <h1>DITTY</h1>
-            <nav>
-                <div><a href="index.html">Login</a></div>
-                <div><a href="select.html">Song selection</a></div>
-                <div><a href="play.html">Play</a></div>
-                <div><a href="scores.html">Scores</a></div>
-            </nav>
-            <hr>
         </header>
 
         <main>
             <form action="select.html" method="get">
-                <div><label for="username">Username</label>
+                <div class="input"><label for="username">Username</label>
                 <input type="text" id="username" name="varUsername" placeholder="Username" required/></div>
-                <div><label for="password">Password</label>
+                <div class="input"><label for="password">Password</label>
                 <input type="password" id="password" name="varPassword" placeholder="Password" required/></div>
                 <div><button type="submit">Login</button> <button type="submit">Register</button></div>
             </form>
         </main>
 
         <footer>
-            <hr>
             <div>Seth Remer</div>
             <div><a href="https://github.com/Sremer/cs260_startup">GitHub</a></div>
         </footer>

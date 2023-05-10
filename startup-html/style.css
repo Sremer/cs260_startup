@@ -1,0 +1,31 @@
+@import url('https://fonts.googleapis.com/css2?family=Fjalla+One&family=Montserrat:wght@100;300&display=swap');
+
+body {
+    background-color: #3f4354;
+    font-family: 'Fjalla One', sans-serif;
+    color: white;
+    text-align: center;
+}
+
+h1 {
+    font-size: 10em;
+    text-align: center;
+}
+
+div[class="input"] {
+    text-align: center;
+}
+
+input {
+    width: 500px;
+    height: 40px;
+    margin: 10px;
+    text-align: center;
+    font-size: large;
+    border-radius: 25px;
+    border: 5px solid grey;
+}
+
+label {
+    visibility: hidden;
+}
