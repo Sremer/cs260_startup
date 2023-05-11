@@ -5,51 +5,42 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="stylesheet" href="style.css"/>
+        <link rel="stylesheet" href="select.css"/>
         <title>Ditty</title>
     </head>
     
     <body>
         <header>
-            <h1>SELECT A SONG</h1>
-            <nav>
-                <div><a href="index.html">Login</a></div>
-                <div><a href="select.html">Song selection</a></div>
-                <div><a href="play.html">Play</a></div>
-                <div><a href="scores.html">Scores</a></div>
-            </nav>
-
-            <hr>
+            <h2>SELECT A SONG</h2>
         </header>
 
         <main>
             <form method="get">
-                <div><label for="songTitle">Song title</label>
+                <label for="songTitle">Song title</label>
                 <input type="search" id="songTitle" name="varSongTitle" placeholder="Song title" required/> 
-                <label for="percentSelect">Percent of song</label>
                 <select id="percentSelect" name="varPercent">
+                    <option selected>10</option>
                     <option>25</option>
-                    <option selected>50</option>
+                    <option>50</option>
                     <option>75</option>
                     <option>100</option>
-                </select></div>
+                </select>
                 <div><button type="submit">Select</button></div>
             </form>
 
             <p>Challenge a friend</p>
 
             <form action="play.html" method="get">
-                <div><label for="friendUsername">Username</label>
-                <input type="text" id="friendUsername" name="varFriendUsername" placeholder="Username"/></div>
+                <input type="text" id="friendUsername" name="varFriendUsername" placeholder="Username"/>
                 <div><button type="submit">Challenge</button></div>
             </form>
             <br>
             <form action="scores.html" method="get">
-                <button type="submit">Scores</button>
+                <div id="scoresBtn"><button type="submit">Scores</button></div>
             </form>
         </main>
 
         <footer>
-            <hr>
             <div>Seth Remer</div>
             <div><a href="https://github.com/Sremer/cs260_startup">GitHub</a></div>
         </footer>

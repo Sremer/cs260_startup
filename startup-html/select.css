@@ -1,0 +1,25 @@
+#scoresBtn {
+    text-align: left;
+}
+
+#songTitle {
+    margin: 0 auto;
+    display: block;
+}
+
+h2 {
+    font-size: 7em;
+    margin: 0.5em;
+}
+
+select {
+    background-color: grey;
+    width: 65px;
+    font-size: large;
+    border-radius: 25px;
+    margin-top: 10px;
+    text-align: center;
+    font-family: 'Fjalla One', sans-serif;
+    color: white;
+}
+
