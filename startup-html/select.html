@@ -4,7 +4,6 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <link rel="stylesheet" href="style.css"/>
         <link rel="stylesheet" href="select.css"/>
         <title>Ditty</title>
     </head>
@@ -15,26 +14,31 @@
         </header>
 
         <main>
-            <form method="get">
-                <label for="songTitle">Song title</label>
-                <input type="search" id="songTitle" name="varSongTitle" placeholder="Song title" required/> 
-                <select id="percentSelect" name="varPercent">
-                    <option selected>10</option>
-                    <option>25</option>
-                    <option>50</option>
-                    <option>75</option>
-                    <option>100</option>
-                </select>
-                <div><button type="submit">Select</button></div>
-            </form>
+            <section id="songPage">
+                <section id="songSelection">
+                    <form method="get">
+                        <label for="songTitle">Song title</label>
+                        <input type="search" id="songTitle" name="varSongTitle" placeholder="Song title" required/> 
+                        <select id="percentSelect" name="varPercent">
+                            <option selected>10</option>
+                            <option>25</option>
+                            <option>50</option>
+                            <option>75</option>
+                            <option>100</option>
+                        </select>
+                        <div><button type="submit">Select</button></div>
+                    </form>
+                </section>
 
-            <p>Challenge a friend</p>
+                <section id="friendSelection">
+                    <form action="play.html" method="get">
+                        <input type="text" id="friendUsername" name="varFriendUsername" placeholder="Challenge a friend"/>
+                        <div><button type="submit">Challenge</button></div>
+                    </form>
+                    <br>
+                </section>
+            </section>
 
-            <form action="play.html" method="get">
-                <input type="text" id="friendUsername" name="varFriendUsername" placeholder="Username"/>
-                <div><button type="submit">Challenge</button></div>
-            </form>
-            <br>
             <form action="scores.html" method="get">
                 <div id="scoresBtn"><button type="submit">Scores</button></div>
             </form>

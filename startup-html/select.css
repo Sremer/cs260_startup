@@ -1,10 +1,77 @@
+@import url('https://fonts.googleapis.com/css2?family=Fjalla+One&family=Montserrat:wght@100;300&display=swap');
+
+* {
+    font-family: 'Fjalla One', sans-serif;
+}
+
+body {
+    margin: 0;
+    height: 100vh;
+    background-color: #282b38;
+    color: white;
+    display: flex;
+    flex-direction: column;
+}
+
+header {
+    flex: 0;
+    text-align: center;
+}
+
+main {
+    height: 100%;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+footer {
+    flex: 0;
+    margin-bottom: 5px;
+    text-align: center;
+}
+
+label {
+    display: none;
+}
+
+button {
+    width: 100px;
+    height: 40px;
+    margin: 20px 10px;
+    color: white;
+    text-align: center;
+    font-size: large;
+    border-radius: 25px;
+    border: rgb(194, 20, 20);
+    background-color: rgb(194, 20, 20);
+    cursor: pointer;
+    font-family: 'Fjalla One', sans-serif;
+}
+
+button:hover {
+    background-color: rgb(119, 8, 8);
+}
+
+input {
+    width: 450px;
+    height: 40px;
+    text-align: center;
+    font-size: large;
+    border-radius: 25px;
+    border: 2px solid grey;
+    filter: none;
+    font-family: 'Fjalla One', sans-serif;
+}
+
 #scoresBtn {
     text-align: left;
+    margin: 5px;
+    flex: 0;
 }
 
 #songTitle {
     margin: 0 auto;
-    display: block;
 }
 
 h2 {
@@ -23,3 +90,33 @@ select {
     color: white;
 }
 
+#songPage {
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+}
+
+@media (max-width:1000px) {
+    #songPage {
+        display: flex;
+        flex-direction: column;
+    }
+}
+
+#songSelection {
+    flex: 1;
+    /* text-align: center; */
+}
+
+#friendSelection {
+    flex: 1;
+    text-align: center;
+}
+
+a, a:visited {
+    color: purple;
+}
+
+a:active {
+    color:white;
+}
