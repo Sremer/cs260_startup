@@ -4,8 +4,12 @@ main {
 
 table {
     width: 100%;
+    padding: 30px 0;
     background-color: grey;
     font-size: xx-large;
     border-collapse: collapse;
 }
 
+thead {
+    background-color: black;
+}
