@@ -8,6 +8,12 @@ h1 {
     margin: 0.5em;
 }
 
+@media (max-width:500px) {
+    h1 {
+        font-size: 30vw;
+    }
+}
+
 #username {
     margin-bottom: 15px;
 }

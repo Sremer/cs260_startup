@@ -19,7 +19,7 @@ main {
         flex-direction: column;
     }
 
-    #friendField {
+    #friendView {
         display: none;
     }
 }
@@ -30,18 +30,60 @@ main {
 
 #stats {
     font-size: xx-large;
-    text-align: left;
 }
 
 #timer {
-    margin-left: 180px;
+    text-align: left;
+    margin-right: 200px;
 }
 
 #userPercent {
-    margin-left: 200px;
+    text-align: right;
 }
 
 #friendPercent {
     font-size: xx-large;
+}
+
+.songContainer {
+    height: 400px;
+    width: 500px;
+    margin-top: 10px;
+    padding: 5px;
+    display: inline-block;
+    background-color: #3c3e45;
+    border-radius: 20px;
+    border: black solid 2px;
+    text-align: start;
+    overflow-y: auto;
+    overflow-y: hidden;
+}
+
+#friendView {
+    filter: blur(3px);
+}
+
+@media (max-width:600px) {
+    .songContainer {
+        width: 80vw;
+        height: 40vh;
+    }
+
+    #leftSide {
+        max-height: 100px;
+    }
+
+    #timer {
+        margin-right: 30vw;
+    }
+}
+
+.word {
+    display: inline-block;
+    margin: 5px;
+    padding: 3px 5px;
+    background-color: #3c3e45;
+    border-radius: 8px;
+    border: solid 4px black;
 }
 

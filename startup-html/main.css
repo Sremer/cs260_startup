@@ -52,6 +52,26 @@ input:focus {
     outline: none;
 }
 
+input.inputOffset {
+    margin-left: 75px;
+}
+
+@media (max-width:500px) {
+    input {
+        width: 70vw;
+    }
+
+    input:focus {
+        width: 71vw;
+    }
+}
+
+@media (max-width:800px) {
+    input.inputOffset {
+        margin-left: 0;
+    }    
+}
+
 button {
     width: 100px;
     height: 40px;

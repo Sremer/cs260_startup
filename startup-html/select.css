@@ -13,10 +13,6 @@ main {
     flex: 0;
 }
 
-#songTitle {
-    margin: 0 auto;
-}
-
 h2 {
     font-size: 7em;
     margin: 0.5em;
@@ -46,9 +42,16 @@ select {
     }
 }
 
+@media (max-width:800px) {
+    h2 {
+        font-size: 4em;
+    } 
+    
+}
+
 #songSelection {
     flex: 1;
-    /* text-align: center; */
+    text-align: center;
 }
 
 #friendSelection {
