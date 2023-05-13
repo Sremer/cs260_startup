@@ -3,5 +3,9 @@ main {
 }
 
 table {
-    
+    width: 100%;
+    background-color: grey;
+    font-size: xx-large;
+    border-collapse: collapse;
 }
+
