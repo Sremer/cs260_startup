@@ -4,60 +4,80 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <link rel="stylesheet" href="style.css"/>
+        <link rel="stylesheet" href="main.css"/>
+        <link rel="stylesheet" href="play.css"/>
         <title>Ditty</title>
     </head>
     
     <body>
         <header>
-        </header>
-
-        <main>
             <form action="select.html" method="get">
                 <button type="submit">QUIT</button>
             </form>
-            <br>
-            <div>
-                <label for="friendPercentage"><span id="friendUsernameLabel">Friend</span></label>
-                <input type="number" id="friendPercentage" value="05" readonly/>
-            </div>
-            <br>
-            <p><span id="dispalyUsername">Username</span></p>
-            <div>
-                <label for="timer">Timer</label>
-                <input type="time" id="timer" name="varTimer" readonly/>
-                <label for="percent">Percent done with song</label>
-                <input type="number" id="percent" name="currentUserPercent" value="02" readonly/>
-            </div>
-            <br>
-            <svg width="600" height="330">
-                <rect x="10" y="10" rx="20" ry="20" width="500" height="300"
-                style="fill:grey;stroke:black;stroke-width:5;opacity:0.5"/>
+        </header>
 
-                <rect x="20" y="20" rx="10" ry="10" width="50" height="30"
-                style="fill:grey;stroke:black;stroke-width:5;opacity:0.5"/>
-                <text fill="#ffffff" font-size="15" font-family="Verdana" x="28" y="40">This</text>
+        <main>
+            <section id="leftSide">
+                <h2 id="friendUsername">Friend's Username</h2>
+                <div id="friendPercent">15%</div>
+                <svg id="friendField" width="600" height="330">
+                    <rect x="10" y="10" rx="20" ry="20" width="500" height="300"
+                    style="fill:grey;stroke:black;stroke-width:5;opacity:0.5"/>
+    
+                    <rect x="20" y="20" rx="10" ry="10" width="50" height="30"
+                    style="fill:grey;stroke:black;stroke-width:5;opacity:0.5"/>
+                    <text fill="#ffffff" font-size="15" font-family="Verdana" x="28" y="40">This</text>
+    
+                    <rect x="80" y="20" rx="10" ry="10" width="50" height="30"
+                    style="fill:grey;stroke:black;stroke-width:5;opacity:0.5"/>
+                    <text fill="#ffffff" font-size="15" font-family="Verdana" x="98" y="40">is</text>
+    
+                    <rect x="140" y="20" rx="10" ry="10" width="50" height="30"
+                    style="fill:grey;stroke:black;stroke-width:5;opacity:0.5"/>
+                    <text fill="#ffffff" font-size="15" font-family="Verdana" x="160" y="40">a</text>
+    
+                    <rect x="200" y="20" rx="10" ry="10" width="50" height="30"
+                    style="fill:grey;stroke:black;stroke-width:5;opacity:0.5"/>
+                    <text fill="#ffffff" font-size="15" font-family="Verdana" x="208" y="40">song</text>
+    
+                    <rect x="260" y="20" rx="10" ry="10" width="50" height="30"
+                    style="fill:grey;stroke:black;stroke-width:5;opacity:0.5"/>
+                    <text fill="#ffffff" font-size="15" font-family="Verdana" x="272" y="40">_ _</text>
+                </svg>
+            </section>
 
-                <rect x="80" y="20" rx="10" ry="10" width="50" height="30"
-                style="fill:grey;stroke:black;stroke-width:5;opacity:0.5"/>
-                <text fill="#ffffff" font-size="15" font-family="Verdana" x="98" y="40">is</text>
+            <section id="rightSide">
+                <h2 id="yourUsername">Your Username</h2>
+                <div id="stats">
+                    <span id="timer">03:45</span>
+                    <span id="userPercent">5%</span>
+                </div>
+                <svg width="600" height="330">
+                    <rect x="10" y="10" rx="20" ry="20" width="500" height="300"
+                    style="fill:grey;stroke:black;stroke-width:2;opacity:0.5"/>
+    
+                    <rect x="20" y="20" rx="10" ry="10" width="50" height="30"
+                    style="fill:grey;stroke:black;stroke-width:5;opacity:0.5"/>
+                    <text fill="#ffffff" font-size="15" font-family="Verdana" x="28" y="40">This</text>
+    
+                    <rect x="80" y="20" rx="10" ry="10" width="50" height="30"
+                    style="fill:grey;stroke:black;stroke-width:5;opacity:0.5"/>
+                    <text fill="#ffffff" font-size="15" font-family="Verdana" x="98" y="40">is</text>
+    
+                    <rect x="140" y="20" rx="10" ry="10" width="50" height="30"
+                    style="fill:grey;stroke:black;stroke-width:5;opacity:0.5"/>
+                    <text fill="#ffffff" font-size="15" font-family="Verdana" x="160" y="40">a</text>
+    
+                    <rect x="200" y="20" rx="10" ry="10" width="50" height="30"
+                    style="fill:grey;stroke:black;stroke-width:5;opacity:0.5"/>
+                    <text fill="#ffffff" font-size="15" font-family="Verdana" x="208" y="40">song</text>
+    
+                    <rect x="260" y="20" rx="10" ry="10" width="50" height="30"
+                    style="fill:grey;stroke:black;stroke-width:5;opacity:0.5"/>
+                    <text fill="#ffffff" font-size="15" font-family="Verdana" x="272" y="40">_ _</text>
+                </svg>
+            </section>
 
-                <rect x="140" y="20" rx="10" ry="10" width="50" height="30"
-                style="fill:grey;stroke:black;stroke-width:5;opacity:0.5"/>
-                <text fill="#ffffff" font-size="15" font-family="Verdana" x="160" y="40">a</text>
-
-                <rect x="200" y="20" rx="10" ry="10" width="50" height="30"
-                style="fill:grey;stroke:black;stroke-width:5;opacity:0.5"/>
-                <text fill="#ffffff" font-size="15" font-family="Verdana" x="208" y="40">song</text>
-
-                <rect x="260" y="20" rx="10" ry="10" width="50" height="30"
-                style="fill:grey;stroke:black;stroke-width:5;opacity:0.5"/>
-                <text fill="#ffffff" font-size="15" font-family="Verdana" x="272" y="40">_ _</text>
-            </svg>
-            <div>
-                <label for="nextWord">Next word</label>
-                <input type="text" id="nextWord" name="varNextWord"/>
-            </div>
         </main>
 
         <footer>

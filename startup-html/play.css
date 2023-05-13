@@ -1,0 +1,47 @@
+main {
+    display: flex;
+    flex-direction: row;
+}
+
+#leftSide {
+    flex: 1;
+    text-align: center;
+}
+
+#rightSide {
+    flex: 1;
+    text-align: center;
+}
+
+@media (max-width:1000px) {
+    main {
+        display: flex;
+        flex-direction: column;
+    }
+
+    #friendField {
+        display: none;
+    }
+}
+
+#friendField {
+    filter: blur(4px);
+}
+
+#stats {
+    font-size: xx-large;
+    text-align: left;
+}
+
+#timer {
+    margin-left: 180px;
+}
+
+#userPercent {
+    margin-left: 200px;
+}
+
+#friendPercent {
+    font-size: xx-large;
+}
+
