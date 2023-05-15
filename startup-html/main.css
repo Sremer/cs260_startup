@@ -13,7 +13,7 @@ body {
     margin: 0;
     height: 100%;
     width: 100%;
-    background-color: #282b38;
+    background-color: #1f2833;
     color: white;
     display: flex;
     flex-direction: column;
@@ -72,22 +72,23 @@ input.inputOffset {
     }    
 }
 
-button {
+button.classic {
     width: 100px;
     height: 40px;
     margin: 20px 10px;
     color: white;
     text-align: center;
     font-size: large;
-    border-radius: 25px;
-    border: rgb(194, 20, 20);
-    background-color: rgb(194, 20, 20);
+    border-radius: 15px;
+    border: solid #66fcf1 2px;
+    background-color: #1f2833;
     cursor: pointer;
     font-family: 'Fjalla One', sans-serif;
 }
 
-button:hover {
-    background-color: rgb(119, 8, 8);
+button.classic:hover {
+    background-color: #66fcf1;
+    color: white;
 }
 
 label {

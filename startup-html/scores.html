@@ -16,34 +16,27 @@
     </head>
     
     <body>
-        <header class="sticky-top">
-            <nav class="navbar navbar-expand-lg bg-dark">
-              <div class="container-fluid">
-                <a class="navbar-brand text-light" href="https://getbootstrap.com/">
-                  <h1>Ditty</h1>
-                </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent">
-                  <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                  <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                      <a class="nav-link text-light" href="select.html">Select</a>
-                    </li>
-                    <li class="nav-item">
-                      <a class="nav-link text-light" href="scores.html">Scores</a>
-                    </li>
-                  </ul>
-                </div>
+        <div class="container">
+            <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom text-light">
+                
+              <ul class="nav col-8 col-md-auto mb-2 mb-md-0">
+                <li><a href="select.html" class="nav-link px-2 link-light">Select</a></li>
+                <li><a href="scores.html" class="nav-link px-2 link-light">Scores</a></li>
+              </ul>
+        
+              <div class="col-md-3 text-end">
+                <form action="index.html" method="get">
+                    <button type="submit" class="btn btn-outline-light me-2">Logout</button>
+                </form>
               </div>
-            </nav>
-          </header>
+            </header>
+        </div>
 
         <main>
             <form method="get">
                 <label for="scoreSearch">Search songs</label>
                 <input type="search" id="scoreSearch" class="inputOffset" name="varScoreSearch"/>
-                <button type="submit">Search</button>
+                <button class="classic" type="submit">Search</button>
             </form>
             <table>
                 <thead>
@@ -69,7 +62,6 @@
                     </tr>
                 </tbody>
             </table>
-            <img alt="musicNote" src="data:image/jpeg;base64,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"/>
         </main>
 
         <footer>

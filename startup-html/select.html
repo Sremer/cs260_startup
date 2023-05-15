@@ -16,28 +16,21 @@
     </head>
     
     <body>
-        <header class="sticky-top">
-            <nav class="navbar navbar-expand-lg bg-dark">
-              <div class="container-fluid">
-                <a class="navbar-brand text-light" href="https://getbootstrap.com/">
-                  <h1>Ditty</h1>
-                </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent">
-                  <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                  <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                      <a class="nav-link text-light" href="select.html">Select</a>
-                    </li>
-                    <li class="nav-item">
-                      <a class="nav-link text-light" href="scores.html">Scores</a>
-                    </li>
-                  </ul>
-                </div>
+        <div class="container">
+            <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom text-light">
+                
+              <ul class="nav col-8 col-md-auto mb-2 mb-md-0">
+                <li><a href="select.html" class="nav-link px-2 link-light">Select</a></li>
+                <li><a href="scores.html" class="nav-link px-2 link-light">Scores</a></li>
+              </ul>
+        
+              <div class="col-md-3 text-end">
+                <form action="index.html" method="get">
+                    <button type="submit" class="btn btn-outline-light me-2">Logout</button>
+                </form>
               </div>
-            </nav>
-          </header>
+            </header>
+        </div>
 
         <main>
             <h2>SELECT A SONG</h2>
@@ -53,14 +46,14 @@
                             <option>75</option>
                             <option>100</option>
                         </select>
-                        <div><button type="submit">Select</button></div>
+                        <div><button class="classic" type="submit">Select</button></div>
                     </form>
                 </section>
 
                 <section id="friendSelection">
                     <form action="play.html" method="get">
                         <input type="text" id="friendUsername" name="varFriendUsername" placeholder="Challenge a friend"/>
-                        <div><button type="submit">Challenge</button></div>
+                        <div><button class="classic" type="submit">Challenge</button></div>
                     </form>
                     <br>
                 </section>

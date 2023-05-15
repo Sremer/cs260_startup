@@ -15,7 +15,7 @@ main {
 
 h2 {
     text-align: center;
-    font-size: 7em;
+    font-size: 5em;
     margin: 0.5em;
 }
 
@@ -45,9 +45,8 @@ select {
 
 @media (max-width:800px) {
     h2 {
-        font-size: 4em;
+        font-size: 3em;
     } 
-    
 }
 
 #songSelection {
