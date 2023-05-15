@@ -13,3 +13,9 @@ table {
 thead {
     background-color: black;
 }
+
+@media (max-width:500px) {
+    table {
+        font-size: x-large;
+    }
+}
