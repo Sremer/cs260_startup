@@ -78,7 +78,7 @@ main {
 
     #leftSide {
         margin-left: 40px;
-        max-height: 50px;
+        max-height: 25vw;
         width: 80vw;
         text-align: center;
         border-bottom: solid white 1px;

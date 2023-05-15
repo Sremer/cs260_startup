@@ -12,6 +12,8 @@ h1 {
 @media (max-width:500px) {
     h1 {
         font-size: 30vw;
+        margin: 10vw;
+        margin-left: 5vw;
     }
 }
 

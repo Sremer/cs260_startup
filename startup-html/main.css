@@ -58,7 +58,8 @@ input.inputOffset {
 }
 
 button.classic {
-    width: 100px;
+    width: fit-content;
+    min-width: 100px;
     height: 40px;
     margin: 20px 10px;
     color: white;
@@ -81,7 +82,8 @@ label {
 }
 
 a.bottomTag, a.bottomTag:visited {
-    color: purple;
+    color: rgb(159, 5, 194);
+    text-decoration: none;
 }
 
 a.bottomTag:active {
