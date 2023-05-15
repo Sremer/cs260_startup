@@ -57,6 +57,28 @@ input.inputOffset {
     margin-left: 75px;
 }
 
+input.stylish {
+    color: white;
+    margin-top: 30px;
+    background: 0;
+    border: 0;
+    border-bottom: solid #bdc3c7 2px;
+    border-radius: 0;
+    outline: none;
+    width: 80vw;
+    max-width: 400px;
+    font-size: 1.5em;
+    transition: padding 0.3s 0.2s ease;
+}
+
+input.stylish:focus {
+    padding-bottom: 5px;
+        border-bottom: solid #66fcf1 3px;
+        width: 80vw;
+}
+  
+  
+
 button.classic {
     width: fit-content;
     min-width: 100px;

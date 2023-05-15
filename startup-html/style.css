@@ -9,6 +9,10 @@ h1 {
     margin: 0.5em;
 }
 
+#btns {
+    margin-top: 20px;
+}
+
 @media (max-width:500px) {
     h1 {
         font-size: 30vw;
