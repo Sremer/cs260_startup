@@ -5,13 +5,36 @@ main {
 table {
     width: 100%;
     padding: 30px 0;
-    background-color: grey;
+    background-color: rgb(128,128,128,.3);
     font-size: xx-large;
     border-collapse: collapse;
+    font-family: 'Source Sans Pro', sans-serif;
 }
 
 thead {
-    background-color: black;
+    background-color: rgb(0,0,0,.5);
+}
+
+#scoreSearch {
+    animation: textEnter 1.7s;
+}
+
+#searchBtn {
+    animation: textEnter 1.5s;
+}
+
+@keyframes textEnter {
+    0% {
+        translate: 0 -1000px;
+    }
+
+    80% {
+        translate: 0 5px;
+    }
+
+    100% {
+        translate: 0 0px;
+    }
 }
 
 @media (max-width:500px) {

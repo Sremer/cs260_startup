@@ -13,23 +13,17 @@ main {
     text-align: center;
 }
 
-@media (max-width:1000px) {
-    main {
-        display: flex;
-        flex-direction: column;
-    }
-
-    #friendView {
-        display: none;
-    }
-}
-
 #friendField {
     filter: blur(4px);
 }
 
 #stats {
     font-size: xx-large;
+    animation: textEnter 1.7s;
+}
+
+#userView {
+    animation: textEnter 1.5s;
 }
 
 #timer {
@@ -41,8 +35,21 @@ main {
     text-align: right;
 }
 
+#yourUsername {
+    animation: textEnter 1.8s;
+}
+
+#friendInfo {
+    animation: textEnter 1.5s;
+}
+
+#friendView {
+    animation: textEnter 1.7s;
+}
+
 #friendPercent {
     font-size: xx-large;
+    animation: textEnter 1.7s;
 }
 
 .songContainer {
@@ -70,11 +77,30 @@ main {
     }
 
     #leftSide {
-        max-height: 100px;
+        margin-left: 40px;
+        max-height: 50px;
+        width: 80vw;
+        text-align: center;
+        border-bottom: solid white 1px;
     }
 
     #timer {
         margin-right: 30vw;
+    }
+
+    #friendUsername {
+        display: inline;
+        margin-right: 15px;
+    }
+
+    #friendPercent {
+        display: inline;
+    }
+}
+
+@media (max-width:354px) {
+    #leftSide {
+        max-height: 30vw;
     }
 }
 
@@ -84,6 +110,32 @@ main {
     padding: 3px 5px;
     background-color: #3c3e45;
     border-radius: 8px;
-    border: solid 4px black;
+    border: solid 3px black;
+    font-family: 'Source Sans Pro', sans-serif;
+}
+
+@keyframes textEnter {
+    0% {
+        translate: 1000px 0;
+    }
+
+    80% {
+        translate: -20px 0;
+    }
+
+    100% {
+        translate: 0px 0;
+    }
+}
+
+@media (max-width:1000px) {
+    main {
+        display: flex;
+        flex-direction: column;
+    }
+
+    #friendView {
+        display: none;
+    }
 }
 

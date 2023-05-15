@@ -15,8 +15,11 @@ main {
 
 h2 {
     text-align: center;
+    font-family: 'Prompt', sans-serif;;
     font-size: 5em;
     margin: 0.5em;
+
+    animation: textEnter 2.2s;
 }
 
 select {
@@ -36,6 +39,34 @@ select {
     flex-direction: row;
 }
 
+#songSelection {
+    flex: 1;
+    text-align: center;
+
+    animation: textEnter 2s;
+}
+
+#friendSelection {
+    flex: 1;
+    text-align: center;
+
+    animation: textEnter 2.1s;
+}
+
+@keyframes textEnter {
+    0% {
+        translate: 0 -1000px;
+    }
+
+    80% {
+        translate: 0 20px;
+    }
+
+    100% {
+        translate: 0 0px;
+    }
+}
+
 @media (max-width:1000px) {
     #songPage {
         display: flex;
@@ -47,14 +78,20 @@ select {
     h2 {
         font-size: 3em;
     } 
-}
 
-#songSelection {
-    flex: 1;
-    text-align: center;
-}
+    #songSelection {
+        max-height: 155px;
+        text-align: center;
+        animation: textEnter 2.1s;
+    }
 
-#friendSelection {
-    flex: 1;
-    text-align: center;
+    #friendSelection {
+        animation: textEnter 2s;
+    }
+
+    select {
+        display: block;
+        margin-left: calc(50vw - 30px);
+    }
+
 }
