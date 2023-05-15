@@ -38,6 +38,7 @@ I am going to use the required technologies in the following ways.
 - **React** - Application ported to use the React web framework.
 
 ## HTML Deliverable
+For this deliverable I added the application structure.
 - **HTML Pages** - Four HTML pages that represent the ability to login, select a song, play, and see past scores.
 - **Links** - The pages have links to each other and there is a link at the bottom for GitHub.
 - **Text** - All of the headings are text.
@@ -45,3 +46,12 @@ I am going to use the required technologies in the following ways.
 - **Login** - There are input boxes for login. 
 - **Database** - The svg represents where the lyrics will be pulled from the database and displayed.
 - **Websocket** - The friend's percentage represents where the friend's real time data will be displayed.
+
+## CSS Deliverable
+For this deliverable I properly styled the application into its final appearance.
+- **Header, footer, and main content body** - These main elements are properly in place as well as their content.
+- **Navigation elements** - I used Bootstrap to make a nice looking navigation bar at the top of the necessary pages.
+- **Responsive to window resizing** - My app looks good on all window sizes.
+- **Application elements** - Used good whitespace and contrast.
+- **Application text content** - Used fonts that worked well together and are consistent.
+- **Application images** - Properly sized the Github logo to work as the link to my Github repository.
