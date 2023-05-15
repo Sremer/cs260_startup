@@ -35,4 +35,13 @@ I am going to use the required technologies in the following ways.
 - **WebSocket**
     - Each user is updated with the other user's current progress.
     - Makes a call to a the *Genuis API* to get song lyrics.
-- **React** - Application ported to use the React web framework. 
+- **React** - Application ported to use the React web framework.
+
+## HTML Deliverable
+- **HTML Pages** - Four HTML pages that represent the ability to login, select a song, play, and see past scores.
+- **Links** - The pages have links to each other and there is a link at the bottom for GitHub.
+- **Text** - All of the headings are text.
+- **Images** - The GitHub link at the bottom is represented by a GitHub image.
+- **Login** - There are input boxes for login. 
+- **Database** - The svg represents where the lyrics will be pulled from the database and displayed.
+- **Websocket** - The friend's percentage represents where the friend's real time data will be displayed.
