@@ -55,6 +55,11 @@ select {
     animation: textEnter 2.1s;
 }
 
+#percentSelect {
+    width: 50px;
+    text-align: center;
+}
+
 @keyframes textEnter {
     0% {
         translate: 0 -1000px;
@@ -91,7 +96,8 @@ select {
         animation: textEnter 2s;
     }
 
-    select {
+    #percentSelect {
+        margin-top: 0;
         display: block;
         margin-left: calc(50vw - 30px);
     }
