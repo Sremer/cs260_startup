@@ -4,8 +4,9 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <script src="login.js"></script>
         <link rel="stylesheet" href="main.css"/>
-        <link rel="stylesheet" href="style.css"/>
+        <link rel="stylesheet" href="index.css"/>
         <title>Ditty</title>
     </head>
     
@@ -15,13 +16,14 @@
         </header>
 
         <main>
-            <form action="select.html" method="get">
-                <div><label for="username">Username</label>
-                <input id="username" type="text"class="stylish" placeholder="Username"/></div>
-                <div><label for="password">Password</label>
-                <input id="password" type="password" class="stylish" placeholder="Password"/></div>
-                <div id="btns"><button class="classic" type="submit">Login</button> <button id="signup" class="classic" type="submit">Sign-up</button></div>
-            </form>
+            <div><label for="username">Username</label>
+            <input id="username" type="text" class="stylish" placeholder="Username"/></div>
+
+            <div><label for="password">Password</label>
+            <input id="password" type="password" class="stylish" placeholder="Password"/></div>
+
+            <div id="btns"><button class="classic" onclick="login()">Login</button> 
+            <button id="signup" class="classic" onclick="signUp()">Sign-up</button></div>
         </main>
 
         <footer>
