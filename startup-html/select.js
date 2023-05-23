@@ -1,6 +1,6 @@
 const fakeData = {
-    "song1" : ["this", "is", "a", "song."],
-    "song 2" : ["this", "is", "another,", "song"],
+    "song1" : ["This", "is-is..", "a", "song."],
+    "song 2" : ["This", "is", "another,", "song", "yay."],
 }
 
 class GameData {
@@ -13,6 +13,7 @@ class GameData {
 
     constructor() {
         this.playerName = localStorage.getItem("username");
+        console.log(this.playerName);
         this.readyToPlay = false;
     }
 
