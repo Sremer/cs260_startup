@@ -1,6 +1,12 @@
 const fakeData = {
     "song1" : ["This", "is-is..", "a", "song."],
     "song 2" : ["This", "is", "another,", "song", "yay."],
+    "song3" : ["song", "song","song","song","song","song","song","song","song","song","song","song","song","song","song","song","song","song",
+    "song","song","song","song","song","song","song","song","song","song","song","song","song","song","song","song","song","song","song","song",
+    "song","song","song","song","song","song","song","song","song","song","song","song","song","song","song","song","song","song","song","song",
+    "song","song","song","song","song","song","song","song","song","song","song","song","song","song","song","song","song","song","song","song",
+    "song","song","song","song","song","song","song","song","song","song","song","song","song","song","song","song","song","song","song","song",
+    "song","song","song","song","song","song","song","song","song","song","song","song","song","song","song","song","song","song","song","song",],
 }
 
 class GameData {
@@ -28,7 +34,7 @@ class GameData {
                     if (!!this.lyrics) {
                         console.log("Ready to play");
                         this.readyToPlay = true;
-                        this.insertChild("#songSelection", this.songTitle, 'div');
+                        this.displaySongTitle();
                     }
                 } else {
                     console.log("not a song");
@@ -50,12 +56,18 @@ class GameData {
         }
     }
 
-    insertChild(parentSelector, text, type) {
-        const newChild = document.createElement(type);
-        newChild.textContent = text;
-      
-        const parentElement = document.querySelector(parentSelector);
-        parentElement.insertBefore(newChild, parentElement.firstChild)
+    displaySongTitle() {
+        if (!!document.getElementById('displaySongTitle')) {
+            document.getElementById('displaySongTitle').textContent = this.songTitle;
+
+        } else {
+            const newChild = document.createElement('div');
+            newChild.setAttribute('id', 'displaySongTitle');
+            newChild.textContent = this.songTitle;
+        
+            const parentElement = document.querySelector("#songSelection");
+            parentElement.insertBefore(newChild, parentElement.firstChild);
+        }
     }
 }
 

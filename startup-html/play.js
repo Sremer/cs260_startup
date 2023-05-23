@@ -55,6 +55,7 @@ class Play {
         this.wordElement.className = 'word';
         this.wordElement.textContent = this.word;
         container.appendChild(this.wordElement);
+        container.scrollTop = container.scrollHeight;
     }
 
     setNextWord() {
