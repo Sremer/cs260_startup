@@ -19,7 +19,6 @@ class GameData {
 
     constructor() {
         this.playerName = localStorage.getItem("username");
-        console.log(this.playerName);
         this.readyToPlay = false;
     }
 
@@ -69,6 +68,11 @@ class GameData {
             parentElement.insertBefore(newChild, parentElement.firstChild);
         }
     }
+}
+
+if (!localStorage.getItem('data')) {
+    const data = [];
+    localStorage.setItem('data', JSON.stringify(data));
 }
 
 const game = new GameData();

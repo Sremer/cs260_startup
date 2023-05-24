@@ -60,6 +60,10 @@ select {
     text-align: center;
 }
 
+#displaySongTitle {
+    font-size: 2em;
+}
+
 @keyframes textEnter {
     0% {
         translate: 0 -1000px;
@@ -87,7 +91,6 @@ select {
     } 
 
     #songSelection {
-        max-height: 155px;
         text-align: center;
         animation: textEnter 2.1s;
     }

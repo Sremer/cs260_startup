@@ -8,11 +8,11 @@ table {
     background-color: rgb(128,128,128,.2);
     font-size: xx-large;
     border-collapse: collapse;
-    font-family: 'Source Sans Pro', sans-serif;
 }
 
 thead {
     background-color: rgb(0,0,0,.4);
+    font-family: 'Source Sans Pro', sans-serif;
 }
 
 #scoreSearch {
