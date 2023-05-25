@@ -33,7 +33,8 @@ class GameData {
                     if (!!this.lyrics) {
                         console.log("Ready to play");
                         this.readyToPlay = true;
-                        this.displaySongTitle();
+                        document.querySelector('h2').innerText = this.songTitle;
+                        //this.displaySongTitle();
                     }
                 } else {
                     console.log("not a song");
@@ -50,7 +51,10 @@ class GameData {
         if (!!this.friendName) {
             if (this.readyToPlay) {
                 localStorage.setItem('gameData', JSON.stringify(this));
-                window.location.href = "play.html";
+                this.exitText();
+                setTimeout(()=>{
+                    window.location.href = "play.html";
+                }, 1500);
             }
         }
     }
@@ -67,6 +71,15 @@ class GameData {
             const parentElement = document.querySelector("#songSelection");
             parentElement.insertBefore(newChild, parentElement.firstChild);
         }
+    }
+
+    exitText() {
+        const title = document.querySelector('h2');
+        const left = document.getElementById('songSelection');
+        const right = document.getElementById('friendSelection');
+        title.classList.add('exitTitle');
+        left.classList.add('exitLeft');
+        right.classList.add('exitRight');
     }
 }
 

@@ -16,7 +16,7 @@ main {
 }
 
 #friendField {
-    filter: blur(4px);
+    filter: blur(5px);
 }
 
 #stats {

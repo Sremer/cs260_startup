@@ -41,14 +41,14 @@ select {
     flex-direction: row;
 }
 
-#songSelection {
+.enterLeft {
     flex: 1;
     text-align: center;
 
     animation: textEnter 2s;
 }
 
-#friendSelection {
+.enterRight {
     flex: 1;
     text-align: center;
 
@@ -62,6 +62,20 @@ select {
 
 #displaySongTitle {
     font-size: 2em;
+}
+
+@keyframes textExit {
+    0% {
+        translate: 0 0px;
+    }
+
+    20% {
+        translate: 0 -60px;
+    }
+
+    100% {
+        translate: 0 1000px;
+    }
 }
 
 @keyframes textEnter {
@@ -90,12 +104,12 @@ select {
         font-size: 3em;
     } 
 
-    #songSelection {
+    .enterLeft {
         text-align: center;
         animation: textEnter 2.1s;
     }
 
-    #friendSelection {
+    .enterRight {
         animation: textEnter 2s;
     }
 
@@ -105,4 +119,16 @@ select {
         margin-left: calc(50vw - 30px);
     }
 
+}
+
+.exitTitle {
+    animation: textExit 2.8s;
+}
+
+.exitLeft {
+    animation: textExit 2.4s;
+}
+
+.exitRight {
+    animation: textExit 2s;
 }

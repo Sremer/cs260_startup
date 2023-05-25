@@ -183,17 +183,33 @@ class Play {
 }
 
 async function simulateFriend() {
-    for (let i = 0; i < 20; ++i) {
-        await delay();
+    const gameData = JSON.parse(localStorage.getItem('gameData'));
+    let num = gameData.lyrics.length * (gameData.percent / 100);
+    if (num < 1) num = 1;
+    const currLyrics = gameData.lyrics.slice(0, num);
+    
+    while (currLyrics.length > 0) {
+        await setWord(currLyrics);
+        const percent = Math.round((1 - currLyrics.length / gameData.lyrics.length) * 100);
+        document.getElementById('friendPercent').textContent = percent + '%';
     }
 }
 
-function delay() {
+function setWord(currLyrics) {
     return new Promise((resolve) => {
+        let delay = Math.random() * (2000 - 500) + 500;
         setTimeout(() => {
-            console.log('timeout');
+            console.log(currLyrics[0]);
+            const container = document.querySelector("#friendView");
+            const wordElement = document.createElement('div');
+            wordElement.className = 'word';
+            wordElement.textContent = currLyrics[0];
+            container.appendChild(wordElement);
+            container.scrollTop = container.scrollHeight;
+            currLyrics.shift();
+
             resolve(true);
-        }, 3000);
+        }, delay);
     });
 }
 

@@ -7,7 +7,9 @@ function searchSong() {
     const data = JSON.parse(localStorage.getItem('data'));
     const songTitle = document.querySelector('#scoreSearch').value;
     for (let i = 0; i < data.length; ++i) {
-        if (data[i].title === songTitle) createTableData(table, data[i]);
+        if (String(data[i].title).toLowerCase() === String(songTitle).toLowerCase()) {
+            createTableData(table, data[i]);
+        }
     }
 }
 

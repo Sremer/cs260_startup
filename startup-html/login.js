@@ -3,7 +3,15 @@ function login() {
     const password = document.querySelector("#password").value;
     localStorage.setItem("username", username);
     localStorage.setItem("password", password);
-    window.location.href = "select.html";
+
+    const title = document.querySelector('h1');
+    title.classList.add('exitTitle');
+    const main = document.querySelector('section');
+    main.classList.add('exitFields');
+
+    setTimeout(()=>{
+        window.location.href = "select.html";
+    }, 1200);
 }
 
 function signUp() {
@@ -11,5 +19,14 @@ function signUp() {
     const password = document.querySelector("#password").value;
     localStorage.setItem("username", username);
     localStorage.setItem("password", password);
-    window.location.href = "select.html";
+    
+    const title = document.querySelector('h1');
+    title.classList.add('exitTitle');
+    const main = document.querySelector('section');
+    main.classList.add('exitFields');
+
+    setTimeout(()=>{
+        window.location.href = "select.html";
+    }, 1200);
 }
+

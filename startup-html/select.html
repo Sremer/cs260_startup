@@ -36,7 +36,7 @@
         <main>
             <h2>SELECT A SONG</h2>
             <section id="songPage">
-                <section id="songSelection">
+                <section id="songSelection" class="enterLeft">
                     <label for="songTitle">Song title</label>
                     <input type="search" id="songTitle" class="inputOffset stylish" name="varSongTitle" placeholder="Song title" required/> 
 
@@ -46,7 +46,7 @@
                     <div><button class="classic" onclick="game.getSong()">Select</button></div>
                 </section>
 
-                <section id="friendSelection">
+                <section id="friendSelection" class="enterRight">
                     <input type="text" class="stylish" id="friendUsername" name="varFriendUsername" placeholder="Challenge a friend" required/>
                     <div><button class="classic" onclick="game.getFriend()">Play</button></div>
                     <br>

@@ -13,6 +13,27 @@ h1 {
     margin-top: 20px;
 }
 
+.exitTitle {
+    animation: textExit 2.4s;
+}
+
+.exitFields {
+    animation: textExit 2s;
+}
+
+@keyframes textExit {
+    0% {
+        translate: 0 0px;
+    }
+
+    20% {
+        translate: 0 -60px;
+    }
+
+    100% {
+        translate: 0 1000px;
+    }
+}
 
 @media (max-width:500px) {
     h1 {
