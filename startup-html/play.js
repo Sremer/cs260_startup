@@ -75,6 +75,12 @@ class Play {
         this.wordElement.textContent = this.word;
         container.appendChild(this.wordElement);
         container.scrollTop = container.scrollHeight;
+
+        // const falseInput = document.createElement('div');
+        // falseInput.setAttribute('contenteditable', '');
+        // falseInput.className = 'invisible';
+        // this.wordElement.appendChild(falseInput);
+        // falseInput.focus();
     }
 
     setNextWord() {
@@ -162,7 +168,7 @@ class Play {
                             this.resetWord();
                         }
                         index = 0;
-
+                        this.resetMobileInput = true;
                     } else {
                         index++;
                     }
@@ -183,6 +189,13 @@ class Play {
                 }
             }
         }); 
+
+        document.addEventListener(('keyup'), (e) => {
+            if (this.resetMobileInput) {
+                document.getElementById('mobileInput').value = '';
+                this.resetMobileInput = false;
+            }
+        });
     }
 }
 
