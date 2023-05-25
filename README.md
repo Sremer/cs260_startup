@@ -55,3 +55,10 @@ For this deliverable I properly styled the application into its final appearance
 - **Application elements** - Used good whitespace and contrast.
 - **Application text content** - Used fonts that worked well together and are consistent.
 - **Application images** - Properly sized the Github logo to work as the link to my Github repository.
+
+## JavaScript Deliverable
+For this deliverable I made my application functional to type out the lyrics to a song and keep track of scores.
+- **Login** - When you press the login button it takes you to the select a song page and will display the user's username in the play screen.
+- **Database** - Displays the saved scores. Currently stored in localStorage but will be replaced with the database data later.
+- **Websocket** - I created a simulateFriend function to simulate retrieving real-time data from the other player. I also stored song lyrics in an object to simulate the data that will be retrieved from an API.
+- **Application Logic** - You can select a song and type the lyrics out as it displays a timer and the current percent you're done with the song. When you finish, your score is recorded.

@@ -1,5 +1,5 @@
 const fakeData = {
-    "song1" : ["This", "is-is..", "a", "song."],
+    "song1" : ["This", "is", "a", "song."],
     "song 2" : ["This", "is", "another,", "song", "yay."],
     "song3" : ["song", "song","song","song","song","song","song","song","song","song","song","song","song","song","song","song","song","song",
     "song","song","song","song","song","song","song","song","song","song","song","song","song","song","song","song","song","song","song","song",

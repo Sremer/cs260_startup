@@ -97,6 +97,10 @@ class Play {
         this.createBlankWord();
         this.currCheckWord = '';
         this.wordElement.textContent = this.word;
+        this.wordElement.classList.add('wrong');
+        setTimeout(()=>{
+            this.wordElement.classList.remove('wrong');
+        }, 300)
     }
 
     setPercent() {
