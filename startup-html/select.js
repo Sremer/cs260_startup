@@ -25,24 +25,27 @@ class GameData {
     getSong() {
         this.songTitle = document.querySelector("#songTitle").value;
         this.percent = Number(document.querySelector("#percentSelect").value);
-        if (!!this.songTitle && !!this.percent) {
-            if (this.percent <= 100 && this.percent > 0) {
-                if (!!Object.keys(fakeData).find(i => i === this.songTitle)) {
-                    this.lyrics = fakeData[this.songTitle];
+        if (!!this.songTitle) {
+            if (!!this.percent) {
+                if (this.percent <= 100 && this.percent > 0) {
+                    if (!!Object.keys(fakeData).find(i => i === this.songTitle)) {
+                        this.lyrics = fakeData[this.songTitle];
 
-                    if (!!this.lyrics) {
-                        console.log("Ready to play");
-                        this.readyToPlay = true;
-                        document.querySelector('h2').innerText = this.songTitle;
-                        //this.displaySongTitle();
-                    }
-                } else {
-                    console.log("not a song");
-                    console.log(this.songTitle);
-                } 
+                        if (!!this.lyrics) {
+                            console.log("Ready to play");
+                            this.readyToPlay = true;
+                            document.querySelector('h2').innerText = this.songTitle;
+                            //this.displaySongTitle();
+                        }
+                    } else {
+                        alert('Could not find song.');
+                    } 
+                }
+            } else {
+                alert('Please enter what percentage of the song you would like to play. Enter a number from 1 to 100.');
             }
         } else {
-            console.log("empty!");
+            alert('Please enter a song title.');
         }
     }
 
@@ -55,7 +58,11 @@ class GameData {
                 setTimeout(()=>{
                     window.location.href = "play.html";
                 }, 1500);
+            } else {
+                alert('Please select a song.');
             }
+        } else {
+            alert('Please enter another player\'s username.');
         }
     }
 
