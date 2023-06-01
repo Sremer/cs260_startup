@@ -136,10 +136,26 @@ class Play {
         }
     }
 
-    recordScore() {
-        const data = JSON.parse(localStorage.getItem('data'));
+    async recordScore() {
+        const score = new Score(this.gameData.songTitle, this.gameData.percent, new Date().toLocaleDateString(), document.getElementById('timer').textContent);
+        try {
+            const response = await fetch('/api/score', {
+                method: 'POST',
+                headers: {'content-type': 'application/json'},
+                body: JSON.stringify(score),
+            });
+
+            const scores = await response.json();
+            localStorage.setItem('scores', JSON.stringify(scores));
+        } catch {
+            this.updateLocalScores();
+        }
+    }
+
+    updateLocalScores() {
+        const data = JSON.parse(localStorage.getItem('scores'));
         data.push(new Score(this.gameData.songTitle, this.gameData.percent, new Date().toLocaleDateString(), document.getElementById('timer').textContent));
-        localStorage.setItem('data', JSON.stringify(data));
+        localStorage.setItem('scores', JSON.stringify(data));
     }
 
     play() {
@@ -156,9 +172,6 @@ class Play {
                     }
                     this.wordElement.textContent = this.word;
                     this.currCheckWord += e.key;
-
-                    console.log(this.checkWord);
-                    console.log(this.currCheckWord);
 
                     if (this.currCheckWord.length === this.checkWord.length) {
                         if (String(this.currCheckWord).toLowerCase() === String(this.checkWord).toLowerCase()) {
@@ -184,8 +197,6 @@ class Play {
                         index--;
                         this.currCheckWord = this.currCheckWord.substring(0, this.currCheckWord.length - 1);
                     } 
-                    console.log(this.checkWord);
-                    console.log(this.currCheckWord);
                 }
             }
         }); 
@@ -216,7 +227,6 @@ function setWord(currLyrics) {
     return new Promise((resolve) => {
         let delay = Math.random() * (2000 - 500) + 500;
         setTimeout(() => {
-            console.log(currLyrics[0]);
             const container = document.querySelector("#friendView");
             const wordElement = document.createElement('div');
             wordElement.className = 'word';

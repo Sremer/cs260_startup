@@ -1,10 +1,26 @@
-function searchSong() {
+async function loadScores() {
+    let scores = [];
+    try {
+        const response = await fetch('/api/scores');
+        scores = await response.json();
+
+        localStorage.setItem('scores', JSON.stringify(scores));
+
+        return scores;
+    } catch {
+        scores = JSON.parse(localStorage.getItem('scores'));
+
+        return scores;
+    }
+}
+
+async function searchSong() {
     const table = document.getElementById('tableBody');
     while (table.firstChild) {
         table.removeChild(table.lastChild);
     }
 
-    const data = JSON.parse(localStorage.getItem('data'));
+    const data = await loadScores();
     const songTitle = document.querySelector('#scoreSearch').value;
     for (let i = 0; i < data.length; ++i) {
         if (String(data[i].title).toLowerCase() === String(songTitle).toLowerCase()) {
@@ -33,8 +49,8 @@ function createTableData(parent, score) {
     parent.appendChild(row);
 }
 
-function displayRecentScores() {
-    const data = JSON.parse(localStorage.getItem('data'));
+async function displayRecentScores() {
+    const data = await loadScores();
     const table = document.getElementById('tableBody');
 
     let amount = (data.length > 5) ? data.length - 5 : 0;
