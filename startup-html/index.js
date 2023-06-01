@@ -10,11 +10,22 @@ app.use(express.static('public'));
 var apiRouter = express.Router();
 app.use(`/api`, apiRouter);
 
+apiRouter.get('/scores', (_req, res) => {
+    res.send(scores);
+});
+
+apiRouter.post('/score', (req, res) => {
+    scores.push(req.body);
+    res.send(scores);
+})
 
 app.use((_req, res) => {
     res.sendFile('index.html', { root: 'public' });
-  });
+});
   
-  app.listen(port, () => {
+app.listen(port, () => {
     console.log(`Listening on port ${port}`);
-  });
+});
+
+
+let scores = [];

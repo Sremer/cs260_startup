@@ -96,3 +96,4 @@ if (!localStorage.getItem('data')) {
 }
 
 const game = new GameData();
+
