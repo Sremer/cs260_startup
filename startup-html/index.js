@@ -18,7 +18,7 @@ apiRouter.get('/lyrics', async (req, res) => {
     try {
       const response = await axios.get('http://api.musixmatch.com/ws/1.1/matcher.lyrics.get', {
         params: {
-          apikey: '81a38c0ca19bce9140f64cc028b1d7ba',
+          apikey: '',
           q_track: songTitle,
           q_artist: artistName,
         },
