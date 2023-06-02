@@ -16,6 +16,7 @@ class Play {
     gameData;
     canPlay;
     currLyrics;
+    origLen;
     word;
     wordElement;
     checkWord;
@@ -28,10 +29,13 @@ class Play {
 
     constructor() {
         this.gameData = JSON.parse(localStorage.getItem('gameData'));
+        this.currLyrics = this.gameData.lyrics.split(/\s+/);
+        console.log(this.currLyrics);
 
-        let num = this.gameData.lyrics.length * (this.gameData.percent / 100);
+        let num = this.currLyrics.length * (this.gameData.percent / 100);
         if (num < 1) num = 1;
-        this.currLyrics = this.gameData.lyrics.slice(0, num);
+        this.currLyrics = this.currLyrics.slice(0, num);
+        this.origLen = this.currLyrics.length;
 
         document.getElementById('friendUsername').textContent = this.gameData.friendName;
         document.getElementById('yourUsername').textContent = this.gameData.playerName;
@@ -110,7 +114,7 @@ class Play {
     }
 
     setPercent() {
-        const percent = Math.round((1 - this.currLyrics.length / this.gameData.lyrics.length) * 100);
+        const percent = Math.round((1 - this.currLyrics.length / this.origLen) * 100);
         document.getElementById('userPercent').textContent = percent + '%';
     }
 
@@ -212,13 +216,15 @@ class Play {
 
 async function simulateFriend() {
     const gameData = JSON.parse(localStorage.getItem('gameData'));
-    let num = gameData.lyrics.length * (gameData.percent / 100);
+    let currLyrics = gameData.lyrics.split(/\s+/);
+    let num = currLyrics.length * (gameData.percent / 100);
     if (num < 1) num = 1;
-    const currLyrics = gameData.lyrics.slice(0, num);
+    currLyrics = currLyrics.slice(0, num);
+    const origLen = currLyrics.length;
     
     while (currLyrics.length > 0) {
         await setWord(currLyrics);
-        const percent = Math.round((1 - currLyrics.length / gameData.lyrics.length) * 100);
+        const percent = Math.round((1 - currLyrics.length / origLen) * 100);
         document.getElementById('friendPercent').textContent = percent + '%';
     }
 }

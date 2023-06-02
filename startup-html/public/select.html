@@ -37,11 +37,14 @@
             <h2>SELECT A SONG</h2>
             <section id="songPage">
                 <section id="songSelection" class="enterLeft">
-                    <label for="songTitle">Song title</label>
-                    <input type="search" id="songTitle" class="inputOffset stylish" name="varSongTitle" placeholder="Song title" required/> 
+                    <div><label for="songTitle">Song title</label>
+                    <input type="search" id="songTitle" class="stylish" name="varSongTitle" placeholder="Song title" required/></div> 
 
-                    <label for="percentSelect">Percent</label>
-                    <input type="text" id="percentSelect" class="stylish" placeholder="%" required/>
+                    <div><label for="artistName">Song title</label>
+                    <input type="search" id="artistName" class="stylish" placeholder="Artist Name" required/></div>
+
+                    <div><label for="percentSelect">Percent</label>
+                    <input type="text" id="percentSelect" class="stylish" placeholder="%" required/></div>
 
                     <div><button class="classic" onclick="game.getSong()">Select</button></div>
                 </section>

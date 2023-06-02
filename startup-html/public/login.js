@@ -29,4 +29,3 @@ function signUp() {
         window.location.href = "select.html";
     }, 1200);
 }
-

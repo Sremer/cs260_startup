@@ -13,6 +13,7 @@ class GameData {
     playerName;
     friendName;
     songTitle;
+    artist;
     lyrics;
     percent;
     readyToPlay;
@@ -22,30 +23,47 @@ class GameData {
         this.readyToPlay = false;
     }
 
-    getSong() {
+    async getSong() {
         this.songTitle = document.querySelector("#songTitle").value;
+        this.artist = document.querySelector("#artistName").value;
         this.percent = Number(document.querySelector("#percentSelect").value);
-        if (!!this.songTitle) {
+        if (!!this.songTitle && !!this.artist) {
             if (!!this.percent) {
                 if (this.percent <= 100 && this.percent > 0) {
-                    if (!!Object.keys(fakeData).find(i => i === this.songTitle)) {
-                        this.lyrics = fakeData[this.songTitle];
-
-                        if (!!this.lyrics) {
-                            console.log("Ready to play");
-                            this.readyToPlay = true;
-                            document.querySelector('h2').innerText = this.songTitle;
-                            //this.displaySongTitle();
-                        }
+                    this.lyrics = await this.getLyrics(this.songTitle, this.artist);
+                    if (this.lyrics.length > 0) {
+                        console.log("Ready to play");
+                        this.readyToPlay = true;
+                        document.querySelector('h2').innerText = this.songTitle;
+                        //this.displaySongTitle();
                     } else {
-                        alert('Could not find song.');
-                    } 
+                        alert('Could not find song');
+                    }
                 }
             } else {
                 alert('Please enter what percentage of the song you would like to play. Enter a number from 1 to 100.');
             }
         } else {
-            alert('Please enter a song title.');
+            alert('Please enter a song title and artist name.');
+        }
+    }
+
+    async getLyrics(title, artist) {
+        let lyrics = [];
+        try {
+            const response = await fetch('/api/lyrics?songTitle=' + encodeURIComponent(title) + '&artistName=' + encodeURIComponent(artist));
+
+            if (response.ok) {
+                const lyricsData = await response.json();
+                const lyrics = lyricsData.message.body.lyrics.lyrics_body;
+                return lyrics;
+            } else {
+                throw new Error('Error occurred while fetching lyrics.');
+            }
+
+        } catch (error) {
+            console.log(error);
+            return lyrics;
         }
     }
 
@@ -88,11 +106,6 @@ class GameData {
         left.classList.add('exitLeft');
         right.classList.add('exitRight');
     }
-}
-
-if (!localStorage.getItem('data')) {
-    const data = [];
-    localStorage.setItem('data', JSON.stringify(data));
 }
 
 const game = new GameData();
