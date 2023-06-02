@@ -29,3 +29,15 @@ function signUp() {
         window.location.href = "select.html";
     }, 1200);
 }
+
+function getQuote() {
+    fetch('https://api.quotable.io/random')
+        .then((response) => response.json())
+        .then((data) => {
+            let quote = `\"` + data.content + `\" -` + data.author;
+            
+            document.querySelector('h3').textContent = quote;
+        })
+}
+
+getQuote();

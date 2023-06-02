@@ -62,3 +62,11 @@ For this deliverable I made my application functional to type out the lyrics to 
 - **Database** - Displays the saved scores. Currently stored in localStorage but will be replaced with the database data later.
 - **Websocket** - I created a simulateFriend function to simulate retrieving real-time data from the other player. I also stored song lyrics in an object to simulate the data that will be retrieved from an API.
 - **Application Logic** - You can select a song and type the lyrics out as it displays a timer and the current percent you're done with the song. When you finish, your score is recorded.
+
+## Service Deliverable
+For this deliverable I created an HTTP service to host my frontend and provide backend endpoints.
+- **Node.js/Express HTTP service** - done!
+- **Static middleware for frontend** - done!
+- **Calls to third party endpoints** - A call to get a random quote for my login screen. 
+- **Backend service endpoints** - Placeholders for my scores that are currently stored on the server. A call to a 3rd party API to retrieve song lyrics.
+- **Frontend calls service endpoints** - I used the fetch function.
