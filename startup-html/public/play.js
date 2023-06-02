@@ -30,6 +30,8 @@ class Play {
     constructor() {
         this.gameData = JSON.parse(localStorage.getItem('gameData'));
         this.currLyrics = this.gameData.lyrics.split(/\s+/);
+
+        this.editLyrics();
         console.log(this.currLyrics);
 
         let num = this.currLyrics.length * (this.gameData.percent / 100);
@@ -44,6 +46,16 @@ class Play {
         this.initializeWord();
 
         this.canPlay = true;
+    }
+
+    editLyrics() {
+        let index = this.currLyrics.indexOf('...');
+        console.log(index);
+        if (index > 1 && this.currLyrics.length > index) {
+            if (this.currLyrics[index + 1] === '*******') {
+                this.currLyrics = this.currLyrics.slice(0, index);
+            }
+        }
     }
 
     isAlpha(ch) {
