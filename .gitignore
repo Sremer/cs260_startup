@@ -3,3 +3,4 @@ node_modules/
 /playwright-report/
 /playwright/.cache/
 startup-html/node_modules/
+startup-html/config.json
