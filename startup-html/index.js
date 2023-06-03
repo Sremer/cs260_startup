@@ -1,5 +1,7 @@
 const express = require('express');
 const axios = require('axios');
+const config = require('./config.json');
+const { MongoClient } = require('mongodb');
 const app = express();
 
 const port = process.argv.length > 2 ? process.argv[2] : 3000;
@@ -18,7 +20,7 @@ apiRouter.get('/lyrics', async (req, res) => {
     try {
       const response = await axios.get('http://api.musixmatch.com/ws/1.1/matcher.lyrics.get', {
         params: {
-          apikey: '',
+          apikey: config.apikey,
           q_track: songTitle,
           q_artist: artistName,
         },
