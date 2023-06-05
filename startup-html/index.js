@@ -1,7 +1,7 @@
 const express = require('express');
 const axios = require('axios');
 const config = require('./config.json');
-const { MongoClient } = require('mongodb');
+const DB = require('./database.js')
 const app = express();
 
 const port = process.argv.length > 2 ? process.argv[2] : 3000;
@@ -39,7 +39,7 @@ apiRouter.get('/scores', (_req, res) => {
 });
 
 apiRouter.post('/score', (req, res) => {
-    scores.push(req.body);
+    DB.addScore(req.body);
     res.send(scores);
 })
 

@@ -4,3 +4,4 @@ node_modules/
 /playwright/.cache/
 startup-html/node_modules/
 startup-html/config.json
+/simon-db/dbConfig.json

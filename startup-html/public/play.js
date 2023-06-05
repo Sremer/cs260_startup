@@ -3,12 +3,14 @@ class Score {
     percent;
     date;
     time;
+    username
 
-    constructor(title, percent, date, time) {
+    constructor(title, percent, date, time, username) {
         this.title = title;
         this.percent = percent;
         this.date = date;
         this.time = time;
+        this.username = username;
     } 
 }
 
@@ -153,7 +155,7 @@ class Play {
     }
 
     async recordScore() {
-        const score = new Score(this.gameData.songTitle, this.gameData.percent, new Date().toLocaleDateString(), document.getElementById('timer').textContent);
+        const score = new Score(this.gameData.songTitle, this.gameData.percent, new Date().toLocaleDateString(), document.getElementById('timer').textContent, this.gameData.playerName);
         try {
             const response = await fetch('/api/score', {
                 method: 'POST',

@@ -1,14 +1,3 @@
-const fakeData = {
-    "song1" : ["This", "is", "a", "song."],
-    "song 2" : ["This", "is", "another,", "song", "yay."],
-    "song3" : ["song", "song","song","song","song","song","song","song","song","song","song","song","song","song","song","song","song","song",
-    "song","song","song","song","song","song","song","song","song","song","song","song","song","song","song","song","song","song","song","song",
-    "song","song","song","song","song","song","song","song","song","song","song","song","song","song","song","song","song","song","song","song",
-    "song","song","song","song","song","song","song","song","song","song","song","song","song","song","song","song","song","song","song","song",
-    "song","song","song","song","song","song","song","song","song","song","song","song","song","song","song","song","song","song","song","song",
-    "song","song","song","song","song","song","song","song","song","song","song","song","song","song","song","song","song","song","song","song",],
-}
-
 class GameData {
     playerName;
     friendName;
@@ -24,7 +13,7 @@ class GameData {
     }
 
     async getSong() {
-        this.songTitle = document.querySelector("#songTitle").value;
+        this.songTitle = String(document.querySelector("#songTitle").value).toLowerCase();
         this.artist = document.querySelector("#artistName").value;
         this.percent = Number(document.querySelector("#percentSelect").value);
         if (!!this.songTitle && !!this.artist) {
