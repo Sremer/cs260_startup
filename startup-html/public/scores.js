@@ -1,7 +1,10 @@
 async function loadScores() {
     let scores = [];
     try {
-        const response = await fetch('/api/scores');
+        const username = localStorage.getItem('username');
+        const url = `/api/scores?username=${encodeURIComponent(username)}`;
+        const response = await fetch(url);
+
         scores = await response.json();
 
         localStorage.setItem('scores', JSON.stringify(scores));
@@ -16,16 +19,19 @@ async function loadScores() {
 
 async function searchSong() {
     const table = document.getElementById('tableBody');
+    const songTitle = document.querySelector('#scoreSearch').value;
     while (table.firstChild) {
         table.removeChild(table.lastChild);
     }
 
-    const data = await loadScores();
-    const songTitle = document.querySelector('#scoreSearch').value;
-    for (let i = 0; i < data.length; ++i) {
-        if (String(data[i].title).toLowerCase() === String(songTitle).toLowerCase()) {
-            createTableData(table, data[i]);
-        }
+    const username = localStorage.getItem('username');
+    const url = `/api/scoresTitle?username=${encodeURIComponent(username)}&title=${encodeURIComponent(songTitle)}`;
+    const response = await fetch(url);
+
+    scores = await response.json();
+    for (let i = 0; i < scores.length; ++i) {
+        console.log(scores[i]);
+        createTableData(table, scores[i]);
     }
 }
 

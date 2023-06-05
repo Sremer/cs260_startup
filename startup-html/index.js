@@ -34,21 +34,30 @@ apiRouter.get('/lyrics', async (req, res) => {
     }
   });
 
-apiRouter.get('/scores', (_req, res) => {
-    res.send(scores);
+apiRouter.get('/scores', async (req, res) => {
+  //console.log(_req);
+  const username = req.query.username;
+  const scores = await DB.getRecentScores(username);  
+  res.send(scores);
 });
 
-apiRouter.post('/score', (req, res) => {
-    DB.addScore(req.body);
-    res.send(scores);
+apiRouter.post('/score', async (req, res) => {
+  DB.addScore(req.body);
+  const scores = await DB.getRecentScores();
+  res.send(scores);
+})
+
+apiRouter.get('/scoresTitle', async (req, res) => {
+  const username = req.query.username;
+  const title = req.query.title;
+  const scores = await DB.getScoreByTitle(username, title);
+  res.send(scores);
 })
 
 app.use((_req, res) => {
-    res.sendFile('index.html', { root: 'public' });
+  res.sendFile('index.html', { root: 'public' });
 });
   
 app.listen(port, () => {
-    console.log(`Listening on port ${port}`);
+  console.log(`Listening on port ${port}`);
 });
-
-let scores = [];

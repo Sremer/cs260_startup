@@ -11,5 +11,25 @@ async function addScore(score) {
     return result;
 }
 
-module.exports = { addScore };
+function getRecentScores(username) {
+    const query = { username: { $regex: username, $options: 'i'} };
+    const options = {
+        sort: { _id: -1 },
+        limit: 5,
+    };
+    const cursor = scoreCollection.find(query, options);
+    return cursor.toArray();
+}
+
+function getScoreByTitle(username, title) {
+    const query = { username: {$regex: username, $options: 'i'},
+                    title: {$regex: title, $options: 'i'} };
+    const options = {
+        sort: { _id: -1 },
+    };
+    const cursor = scoreCollection.find(query, options);
+    return cursor.toArray();
+}
+
+module.exports = { addScore, getRecentScores, getScoreByTitle };
 
