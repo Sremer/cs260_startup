@@ -70,3 +70,9 @@ For this deliverable I created an HTTP service to host my frontend and provide b
 - **Calls to third party endpoints** - A call to get a random quote for my login screen. 
 - **Backend service endpoints** - Placeholders for my scores that are currently stored on the server. A call to a 3rd party API to retrieve song lyrics.
 - **Frontend calls service endpoints** - I used the fetch function.
+
+## Database Deliverable
+For this deliverable I stored and retrieved data from MongoDB.
+- **MongoDB Atlas database created** - done!
+- **Endpoints for data** - My stubbed out enpoints for saving and loading scores now process and send the scores to Mongo and retrieve them.
+- **Stores data in MongoDB** - done!
