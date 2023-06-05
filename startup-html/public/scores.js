@@ -59,11 +59,7 @@ async function displayRecentScores() {
     const data = await loadScores();
     const table = document.getElementById('tableBody');
 
-    let amount = (data.length > 5) ? data.length - 5 : 0;
-    console.log(amount);
-    for (let i = data.length - 1; i >= amount; --i) {
-        console.log(i);
-        console.log(data[i]);
+    for (let i = 0; i < data.length; ++i) {
         createTableData(table, data[i]);
     }
 }

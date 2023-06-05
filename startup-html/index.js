@@ -26,7 +26,6 @@ apiRouter.get('/lyrics', async (req, res) => {
         },
       });
       
-      console.log(response.data);
       res.send(response.data);
     } catch (error) {
       console.error(error);
@@ -35,7 +34,6 @@ apiRouter.get('/lyrics', async (req, res) => {
   });
 
 apiRouter.get('/scores', async (req, res) => {
-  //console.log(_req);
   const username = req.query.username;
   const scores = await DB.getRecentScores(username);  
   res.send(scores);
