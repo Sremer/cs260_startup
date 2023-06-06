@@ -1,33 +1,42 @@
-function login() {
+async function loginOrSignUp(endpoint) {
     const username = document.querySelector("#username").value;
     const password = document.querySelector("#password").value;
-    localStorage.setItem("username", username);
-    localStorage.setItem("password", password);
+    const response = await fetch(endpoint, {
+        method: 'post',
+        body: JSON.stringify({ username: username, password: password }),
+        headers: {
+          'Content-type': 'application/json; charset=UTF-8',
+        },
+    });
 
+    if (response.ok) {
+        localStorage.setItem('username', username);
+        
+        setExitText();
+
+        setTimeout(()=>{
+            window.location.href = "select.html";
+        }, 1200);
+
+    } else {
+        const body = await response.json();
+        alert(body.msg);
+    }
+}
+
+function setExitText() {
     const title = document.querySelector('h1');
     title.classList.add('exitTitle');
     const main = document.querySelector('section');
     main.classList.add('exitFields');
+}
 
-    setTimeout(()=>{
-        window.location.href = "select.html";
-    }, 1200);
+function login() {
+    loginOrSignUp(`/api/auth/login`);
 }
 
 function signUp() {
-    const username = document.querySelector("#username").value;
-    const password = document.querySelector("#password").value;
-    localStorage.setItem("username", username);
-    localStorage.setItem("password", password);
-    
-    const title = document.querySelector('h1');
-    title.classList.add('exitTitle');
-    const main = document.querySelector('section');
-    main.classList.add('exitFields');
-
-    setTimeout(()=>{
-        window.location.href = "select.html";
-    }, 1200);
+    loginOrSignUp(`/api/auth/signUp`);
 }
 
 function getQuote() {
