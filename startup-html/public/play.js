@@ -156,6 +156,7 @@ class Play {
 
     async recordScore() {
         const score = new Score(this.gameData.songTitle, this.gameData.percent, new Date().toLocaleDateString(), document.getElementById('timer').textContent, this.gameData.playerName);
+        console.log(score);
         try {
             const response = await fetch('/api/score', {
                 method: 'POST',

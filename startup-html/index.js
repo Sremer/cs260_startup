@@ -62,7 +62,20 @@ apiRouter.get('/user/:username', async (req, res) => {
   res.status(404).send({ msg: 'Unknown' });
 });
 
-apiRouter.get('/lyrics', async (req, res) => {
+var secureApiRouter = express.Router();
+apiRouter.use(secureApiRouter);
+
+secureApiRouter.use(async (req, res, next) => {
+  authToken = req.cookies[authCookieName];
+  const user = await DB.getUserByToken(authToken);
+  if (user) {
+    next();
+  } else {
+    res.status(401).send({ msg: 'Invalid credentials' });
+  }
+});
+
+secureApiRouter.get('/lyrics', async (req, res) => {
     const songTitle = req.query.songTitle;
     const artistName = req.query.artistName;
   
@@ -80,17 +93,19 @@ apiRouter.get('/lyrics', async (req, res) => {
       console.error(error);
       res.status(500).send('An error occurred while fetching lyrics.');
     }
-  });
+});
 
-apiRouter.get('/scores', async (req, res) => {
+secureApiRouter.get('/scores', async (req, res) => {
   const username = req.query.username;
   const scores = await DB.getRecentScores(username);  
   res.send(scores);
 });
 
-apiRouter.post('/score', async (req, res) => {
-  DB.addScore(req.body);
-  const scores = await DB.getRecentScores();
+secureApiRouter.post('/score', async (req, res) => {
+  const score = { ...req.body, ip: req.ip };
+  const username = score.username;
+  await DB.addScore(score);
+  const scores = await DB.getRecentScores(username);
   res.send(scores);
 })
 

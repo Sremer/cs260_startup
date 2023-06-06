@@ -30,9 +30,8 @@ async function signUpUser(username, password) {
     return user;
 }
 
-async function addScore(score) {
-    const result = await scoreCollection.insertOne(score);
-    return result;
+function addScore(score) {
+    scoreCollection.insertOne(score);
 }
 
 function getRecentScores(username) {
