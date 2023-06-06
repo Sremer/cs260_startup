@@ -76,3 +76,10 @@ For this deliverable I stored and retrieved data from MongoDB.
 - **MongoDB Atlas database created** - done!
 - **Endpoints for data** - My stubbed out enpoints for saving and loading scores now process and send the scores to Mongo and retrieve them.
 - **Stores data in MongoDB** - done!
+
+## Login deliverable
+For this deliverable I added user registration and authentication.
+- **User registration** - Creates a new account in the database.
+- **Existing user** - Verifies username and password from the data stored in the database.
+- **Use MongoDB to store credentials** - done!
+- **Restricts functionality** - You can't select songs or see scores until you have logged in. 
