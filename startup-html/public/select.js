@@ -61,17 +61,11 @@ class GameData {
     getFriend() {
         this.friendName = document.querySelector("#friendUsername").value;
         if (!!this.friendName) {
-            this.connectToFriend(this.friendName);
-
-            // if (this.readyToPlay) {
-            //     localStorage.setItem('gameData', JSON.stringify(this));
-            //     this.exitText();
-            //     setTimeout(()=>{
-            //         window.location.href = "play.html";
-            //     }, 1500);
-            // } else {
-            //     alert('Please select a song.');
-            // }
+            if (this.readyToPlay) {
+                this.connectToFriend(this.friendName);
+            } else {
+                alert('Please select a song.');
+            }
         } else {
             alert('Please enter another player\'s username.');
         }
@@ -113,7 +107,10 @@ class GameData {
             const msg = JSON.parse(await event.data);
             console.log(msg);
             if (msg.ready === true) {
+                if (msg.initiatingUser !== this.playerName) this.friendName = msg.initiatingUser;
                 this.songTitle = msg.song;
+                this.percent = msg.percent;
+                this.lyrics = msg.lyrics;
                 this.play();
             } else {
                 console.log('not ready');
@@ -127,6 +124,8 @@ class GameData {
             user : this.playerName,
             friend : this.friend,
             song : this.songTitle,
+            percent : this.percent,
+            lyrics : this.lyrics
         }
         this.socket.send(JSON.stringify(msg));
     }

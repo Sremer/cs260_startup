@@ -15,7 +15,7 @@ function peerProxy(httpServer) {
     let connections = [];
 
     wss.on('connection', (ws) => {
-        const connection = { id: uuid.v4(), alive: true, ws: ws, song: '' };
+        const connection = { id: uuid.v4(), alive: true, ws: ws };
         connections.push(connection);
 
         ws.on('message', function message(data) {
@@ -26,31 +26,18 @@ function peerProxy(httpServer) {
             if (msg.type === 'connect') {
 
                 connection.user = msg.user;
-                connection.song = msg.song;
                 const friend = connections.find(obj => obj.user === msg.friend);
 
-                const returnMsg = { ready : false, song : "" };
+                const returnMsg = { ready : false};
                 if (friend !== undefined) {
-            
-                    if (friend.song === "" && connection.song !== "") {
-                        returnMsg.song = connection.song;
-                        returnMsg.ready = true;
-                        const msgString = JSON.stringify(returnMsg);
-                        friend.ws.send(msgString);
-                        connection.ws.send(msgString);
-
-                    } else if (friend.song !== "" && connection.song === "") {
-                        returnMsg.song = friend.song;
-                        returnMsg.ready = true;
-                        const msgString = JSON.stringify(returnMsg);
-                        friend.ws.send(msgString);
-                        connection.ws.send(msgString);
-
-                    } else {
-                        const msgString = JSON.stringify(returnMsg);
-                        friend.ws.send(msgString);
-                        connection.ws.send(msgString);
-                    }
+                    returnMsg.song = msg.song;
+                    returnMsg.percent = msg.percent;
+                    returnMsg.lyrics = msg.lyrics;
+                    returnMsg.initiatingUser = msg.user;
+                    returnMsg.ready = true;
+                    const msgString = JSON.stringify(returnMsg);
+                    friend.ws.send(msgString);
+                    connection.ws.send(msgString);
 
                 } else {
                     const msgString = JSON.stringify(returnMsg);
