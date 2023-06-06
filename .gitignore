@@ -5,3 +5,4 @@ node_modules/
 startup-html/node_modules/
 startup-html/config.json
 /simon-db/dbConfig.json
+.vscode/
