@@ -1,5 +1,6 @@
 const { WebSocketServer } = require('ws');
 const uuid = require('uuid');
+const { json } = require('express');
 
 function peerProxy(httpServer) {
 
@@ -13,11 +14,52 @@ function peerProxy(httpServer) {
 
     let connections = [];
 
-    ws.on('connection', (ws) => {
-        const connection = { id: uuid.v4(), alive: true, ws: ws };
+    wss.on('connection', (ws) => {
+        const connection = { id: uuid.v4(), alive: true, ws: ws, song: '' };
         connections.push(connection);
 
-        
+        ws.on('message', function message(data) {
+            const msg = JSON.parse(data);
+
+            console.log(msg);
+
+            if (msg.type === 'connect') {
+
+                connection.user = msg.user;
+                connection.song = msg.song;
+                const friend = connections.find(obj => obj.user === msg.friend);
+
+                const returnMsg = { ready : false, song : "" };
+                if (friend !== undefined) {
+            
+                    if (friend.song === "" && connection.song !== "") {
+                        returnMsg.song = connection.song;
+                        returnMsg.ready = true;
+                        const msgString = JSON.stringify(returnMsg);
+                        friend.ws.send(msgString);
+                        connection.ws.send(msgString);
+
+                    } else if (friend.song !== "" && connection.song === "") {
+                        returnMsg.song = friend.song;
+                        returnMsg.ready = true;
+                        const msgString = JSON.stringify(returnMsg);
+                        friend.ws.send(msgString);
+                        connection.ws.send(msgString);
+
+                    } else {
+                        const msgString = JSON.stringify(returnMsg);
+                        friend.ws.send(msgString);
+                        connection.ws.send(msgString);
+                    }
+
+                } else {
+                    const msgString = JSON.stringify(returnMsg);
+                    connection.ws.send(msgString);
+                }
+
+            }
+
+        })
 
         ws.on('close', () => {
             connections.findIndex((o, i) => {

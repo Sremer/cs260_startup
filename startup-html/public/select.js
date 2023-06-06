@@ -10,6 +10,8 @@ class GameData {
     constructor() {
         this.playerName = localStorage.getItem("username");
         this.readyToPlay = false;
+        this.songTitle = '';
+        this.connectWebSocket();
     }
 
     async getSong() {
@@ -59,15 +61,17 @@ class GameData {
     getFriend() {
         this.friendName = document.querySelector("#friendUsername").value;
         if (!!this.friendName) {
-            if (this.readyToPlay) {
-                localStorage.setItem('gameData', JSON.stringify(this));
-                this.exitText();
-                setTimeout(()=>{
-                    window.location.href = "play.html";
-                }, 1500);
-            } else {
-                alert('Please select a song.');
-            }
+            this.connectToFriend(this.friendName);
+
+            // if (this.readyToPlay) {
+            //     localStorage.setItem('gameData', JSON.stringify(this));
+            //     this.exitText();
+            //     setTimeout(()=>{
+            //         window.location.href = "play.html";
+            //     }, 1500);
+            // } else {
+            //     alert('Please select a song.');
+            // }
         } else {
             alert('Please enter another player\'s username.');
         }
@@ -94,6 +98,45 @@ class GameData {
         title.classList.add('exitTitle');
         left.classList.add('exitLeft');
         right.classList.add('exitRight');
+    }
+
+    connectWebSocket() {
+        const protocol = window.location.protocol === 'http:' ? 'ws' : 'wss';
+        this.socket = new WebSocket(`${protocol}://${window.location.host}/ws`);
+        this.socket.onopen = (event) => {
+            console.log('Websocket connected');
+        };
+        this.socket.onclose = (event) => {
+            console.log('Websocket disconnected');
+        };
+        this.socket.onmessage = async (event) => {
+            const msg = JSON.parse(await event.data);
+            console.log(msg);
+            if (msg.ready === true) {
+                this.songTitle = msg.song;
+                this.play();
+            } else {
+                console.log('not ready');
+            }
+        } 
+    }
+
+    connectToFriend(friend) {
+        const msg = {
+            type : 'connect',
+            user : this.playerName,
+            friend : this.friend,
+            song : this.songTitle,
+        }
+        this.socket.send(JSON.stringify(msg));
+    }
+
+    play() {
+        localStorage.setItem('gameData', JSON.stringify(this));
+        this.exitText();
+        setTimeout(()=>{
+            window.location.href = "play.html";
+        }, 1500);
     }
 }
 
