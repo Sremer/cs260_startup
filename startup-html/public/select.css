@@ -126,9 +126,10 @@ button.classic {
     cursor: pointer;
 }
 
-button.classic:hover {
+button.classic:hover, button.classic:focus {
     background-color: rgb(212, 211, 211);
     color: rgb(10, 10, 10);
+    outline: none;
 }
 
 #byYourself {

@@ -174,6 +174,13 @@ class GameData {
             window.location.href = "play.html";
         }, 1500);
     }
+
+    switchScreens() {
+        this.exitText();
+        setTimeout(()=>{
+            window.location.href = "scores.html";
+        }, 1500);
+    }
 }
 
 function logout() {

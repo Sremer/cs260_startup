@@ -25,34 +25,31 @@
               </ul>
         
               <div class="col-md-3 text-end">
-                <button onclick="logout()" class="btn btn-outline-dark me-2">Logout</button>
+                <button onclick="logout()" class="btn btn-outline-dark me-2">logout</button>
               </div>
             </header>
         </div>
 
         <main>
             <label for="scoreSearch">Search songs</label>
-            <input type="search" id="scoreSearch" class="inputOffset stylish" name="varScoreSearch" placeholder="Song title" required/>
-            <button id="searchBtn" class="classic" onclick="searchSong()">Search</button>
+            <input type="text" id="scoreSearch" class="inputOffset stylish" name="varScoreSearch" placeholder="song title" required/>
+            <button id="searchBtn" class="classic" onclick="searchSong()">search</button>
     
-            <table>
-                <thead>
-                    <tr>
-                        <th>Title</th>
-                        <th>Percent</th>
-                        <th class="date">Date</th>
-                        <th>Time</th>
-                    </tr>
-                </thead>
-                <tbody id="tableBody">
-                </tbody>
-            </table>
+            <div id="tableContainer">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>title</th>
+                            <th>percent</th>
+                            <th class="date">date</th>
+                            <th>time</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tableBody">
+                    </tbody>
+                </table>
+            </div>
         </main>
-
-        <footer>
-            <div>Seth Remer</div>
-            <div><a class="bottomTag" href="https://github.com/Sremer/cs260_startup"><img id="githubLogo" alt="github" src="github-mark-white.png"/></a></div>
-        </footer>
 
         <script src="scores.js"></script>
         <script

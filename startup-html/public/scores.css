@@ -1,20 +1,34 @@
+@import url('https://fonts.googleapis.com/css2?family=Prompt:wght@100&family=Roboto+Mono:wght@200;300;400&display=swap');
+
 main {
     text-align: center;
 }
 
 table {
+    font-weight: 200;
     width: 100%;
     max-height: 60vh;
     padding: 30px 0;
-    background-color: rgb(128,128,128,.2);
+    background-color: rgb(10, 10, 10, .4);
     font-size: xx-large;
     border-collapse: collapse;
     overflow-y: scroll;
+    color: rgb(212, 211, 211);
+}
+
+th {
+    color: rgb(212, 211, 211);
+    font-weight: 200;
 }
 
 thead {
-    background-color: rgb(0,0,0,.4);
-    font-family: 'Source Sans Pro', sans-serif;
+    background-color: rgb(10, 10, 10);
+}
+
+#tableContainer {
+    height: 60vh;
+    overflow: auto;
+    white-space: nowrap;
 }
 
 #scoreSearch {
@@ -23,6 +37,10 @@ thead {
 
 #searchBtn {
     animation: textEnter 1.5s;
+}
+
+input.stylish {
+    margin: 0;
 }
 
 @keyframes textEnter {

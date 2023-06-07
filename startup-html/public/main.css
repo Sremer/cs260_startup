@@ -69,13 +69,18 @@ button.classic {
     cursor: pointer;
 }
 
-button.classic:hover {
+button.classic:hover, button.classic:focus {
     background-color: rgb(10, 10, 10);
     color: rgb(212, 211, 211);
+    outline: none;
 }
 
 label {
     display: none;
+}
+
+a:hover {
+    cursor: pointer;
 }
 
 a.bottomTag, a.bottomTag:visited {
