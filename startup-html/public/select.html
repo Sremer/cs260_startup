@@ -18,47 +18,46 @@
     
     <body>
         <div class="container">
-            <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom text-light">
+            <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-0 text-light">
                 
               <ul class="nav col-8 col-md-auto mb-2 mb-md-0">
-                <li><a href="select.html" class="nav-link px-2 link-light">Play</a></li>
-                <li><a href="scores.html" class="nav-link px-2 link-light">Scores</a></li>
+                <li><a href="select.html" class="nav-link px-2 link-dark">play</a></li>
+                <li><a href="scores.html" class="nav-link px-2 link-dark">scores</a></li>
               </ul>
         
               <div class="col-md-3 text-end">
-                <button onclick="logout()" class="btn btn-outline-light me-2">Logout</button>
+                <button onclick="logout()" class="btn btn-outline-dark me-2">logout</button>
               </div>
             </header>
         </div>
 
         <main>
-            <h2>SELECT A SONG</h2>
+            <div><label for="songTitle">Song title</label>
+            <input type="text" id="songTitle" class="inputTitle" name="varSongTitle" placeholder="select a song" required/></div> 
             <section id="songPage">
                 <section id="songSelection" class="enterLeft">
-                    <div><label for="songTitle">Song title</label>
-                    <input type="search" id="songTitle" class="stylish" name="varSongTitle" placeholder="Song title" required/></div> 
-
                     <div><label for="artistName">Song title</label>
-                    <input type="search" id="artistName" class="stylish" placeholder="Artist Name" required/></div>
+                    <input type="text" id="artistName" class="stylish" placeholder="artist name" required/></div>
 
                     <div><label for="percentSelect">Percent</label>
                     <input type="text" id="percentSelect" class="stylish" placeholder="%" required/></div>
 
-                    <div><button class="classic" onclick="game.getSong()">Select</button></div>
+                    <div><button class="classic" onclick="game.getSong()">select</button></div>
                 </section>
 
                 <section id="friendSelection" class="enterRight">
-                    <input type="text" class="stylish" id="friendUsername" name="varFriendUsername" placeholder="Challenge a friend" required/>
-                    <div><button class="classic" onclick="game.getFriend()">Play</button></div>
-                    <br>
+                    <input type="text" class="stylish" id="friendUsername" name="varFriendUsername" placeholder="challenge a friend" required/>
+                    <div><button class="classic" onclick="game.getFriend()">play</button></div>
+                    <div id="byYourself">or</div>
+                    <div><button class="classic" onclick="game.playAlone()">play alone</button></div>
                 </section>
             </section>
         </main>
 
-        <footer>
+        <!-- <footer>
             <div>Seth Remer</div>
             <div><a class="bottomTag" href="https://github.com/Sremer/cs260_startup"><img id="githubLogo" alt="github" src="github-mark-white.png"/></a></div>
-        </footer>
+        </footer> -->
 
         <script
         src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"

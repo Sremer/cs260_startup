@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Prompt:wght@100&family=Source+Sans+Pro:wght@400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Prompt:wght@100&family=Roboto+Mono:wght@200;300;400&display=swap');
 
 header {
     text-align: center;
@@ -7,6 +7,13 @@ header {
 main {
     display: flex;
     flex-direction: column;
+    text-align: center;
+}
+
+footer {
+    background:rgb(10, 10, 10);
+    color: rgb(212, 211, 211);
+    margin: 0;
 }
 
 #scoresBtn {
@@ -16,8 +23,10 @@ main {
 }
 
 h2 {
+    font-weight: 300;
     text-align: center;
-    font-family: 'Prompt', sans-serif;;
+    color: rgb(212, 211, 211);
+    font-family: 'Roboto Mono', monospace;
     font-size: 5em;
     margin: 0.5em;
 
@@ -32,13 +41,15 @@ select {
     margin-top: 10px;
     text-align: center;
     color: white;
-    font-family: 'Source Sans Pro', sans-serif;
 }
 
 #songPage {
     flex: 1;
     display: flex;
     flex-direction: row;
+    background: rgb(10, 10, 10);
+
+    animation: textEnter 1.9s;
 }
 
 .enterLeft {
@@ -62,6 +73,66 @@ select {
 
 #displaySongTitle {
     font-size: 2em;
+}
+
+.inputTitle {
+    font-weight: 300;
+    text-align: center;
+    font-family: 'Roboto Mono', monospace;
+    font-size: 3vw;
+    margin: 0.5em;
+    font-weight: 300;
+    color: rgb(10, 10, 10);
+    margin-top: 30px;
+    background: 0;
+    border: 0;
+    border-radius: 0;
+    outline: none;
+    animation: textEnter 2.2s;
+}
+
+.readyToPlay {
+    margin-right: 18px;
+    color: grey;
+}
+
+input.stylish {
+    font-weight: 300;
+    color: rgb(212, 211, 211);
+    margin-top: 30px;
+    background: 0;
+    border: 0;
+    border-radius: 0;
+    outline: none;
+    width: 80vw;
+    max-width: 300px;
+    font-size: 1.5em;
+    text-align: center;
+    transition: padding 0.3s 0.2s ease;
+}
+
+button.classic {
+    font-weight: 300;
+    width: fit-content;
+    min-width: 100px;
+    height: 40px;
+    margin: 20px 10px;
+    color: rgb(212, 211, 211);
+    text-align: center;
+    font-size: large;
+    border-radius: 8px;
+    border: solid rgb(212, 211, 211) 1px;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+button.classic:hover {
+    background-color: rgb(212, 211, 211);
+    color: rgb(10, 10, 10);
+}
+
+#byYourself {
+    color: rgb(212, 211, 211);
 }
 
 @keyframes textExit {
@@ -94,8 +165,12 @@ select {
 
 @media (max-width:1000px) {
     #songPage {
-        display: flex;
-        flex-direction: column;
+        display: block;
+        width: 100%;
+    }
+
+    .inputTitle {
+        font-size: 8vw;
     }
 }
 
@@ -117,6 +192,10 @@ select {
         margin-top: 0;
         display: block;
         margin-left: calc(50vw - 30px);
+    }
+
+    #friendUsername {
+        width: 90vw;
     }
 
 }

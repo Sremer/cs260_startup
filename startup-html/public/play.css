@@ -1,4 +1,8 @@
-@import url('https://fonts.googleapis.com/css2?family=Prompt:wght@100&family=Source+Sans+Pro:wght@400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Prompt:wght@100&family=Roboto+Mono:wght@200;300;400&display=swap');
+
+* {
+    font-weight: 300;
+}
 
 main {
     display: flex;
@@ -16,7 +20,7 @@ main {
 }
 
 #friendField {
-    filter: blur(5px);
+    filter: blur(20px);
 }
 
 #stats {
@@ -38,7 +42,12 @@ main {
 }
 
 #yourUsername {
+    color: grey;
     animation: textEnter 1.8s;
+}
+
+#friendUsername {
+    color: grey;
 }
 
 #friendInfo {
@@ -65,9 +74,9 @@ main {
     margin-top: 10px;
     padding: 5px;
     display: inline-block;
-    background-color: #3c3e45;
+    /* background-color: #3c3e45;
     border-radius: 20px;
-    border: black solid 2px;
+    border: black solid 2px; */
     text-align: start;
     overflow-y: auto;
     overflow-y: hidden;
@@ -85,14 +94,16 @@ main {
 
     #leftSide {
         margin-left: 40px;
-        max-height: 25vw;
         width: 80vw;
         text-align: center;
-        border-bottom: solid white 1px;
     }
 
     #timer {
         margin-right: 30vw;
+    }
+
+    #yourUsername {
+        display: none;
     }
 
     #friendUsername {
@@ -107,18 +118,24 @@ main {
 
 @media (max-width:354px) {
     #leftSide {
-        max-height: 30vw;
+        max-height: 20vw;
     }
 }
 
 .word {
     display: inline-block;
-    margin: 5px;
-    padding: 3px 5px;
-    background-color: #3c3e45;
+    margin: 2px;
+    padding: 3px 2px;
+    font-size: large;
     border-radius: 8px;
-    border: solid 3px black;
-    font-family: 'Source Sans Pro', sans-serif;
+    color: grey;
+    /* background-color: #3c3e45;
+    border-radius: 8px;
+    border: solid 3px black; */
+}
+
+.right {
+    color: rgb(10, 10, 10);
 }
 
 .wrong {
@@ -182,5 +199,9 @@ main {
     #mobileInput {
         display: inline;
     }
+}
+
+.hide {
+    display: none;
 }
 

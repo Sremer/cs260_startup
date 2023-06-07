@@ -6,6 +6,7 @@ class GameData {
     lyrics;
     percent;
     readyToPlay;
+    withFriend;
 
     constructor() {
         this.playerName = localStorage.getItem("username");
@@ -25,10 +26,10 @@ class GameData {
                     if (this.lyrics.length > 0) {
                         console.log("Ready to play");
                         this.readyToPlay = true;
-                        document.querySelector('h2').innerText = this.songTitle;
-                        //this.displaySongTitle();
+                        this.displayReadyToPlay();
                     } else {
                         alert('Could not find song');
+                        this.deleteReadyToPlay();
                     }
                 }
             } else {
@@ -58,16 +59,44 @@ class GameData {
         }
     }
 
+    displayReadyToPlay() {
+        const main = document.querySelector('main');
+        if (main.firstChild.classList === undefined) {
+            const main = document.querySelector('main');
+            const newDiv = document.createElement('div');
+            newDiv.textContent = 'ready to play';
+            newDiv.classList.add('readyToPlay');
+            main.insertBefore(newDiv, main.firstChild);
+        }
+    }
+
+    deleteReadyToPlay() {
+        const main = document.querySelector('main');
+        if (main.firstChild.classList !== undefined) {
+            main.removeChild(main.firstChild);
+        }
+    }
+
     getFriend() {
         this.friendName = document.querySelector("#friendUsername").value;
         if (!!this.friendName) {
             if (this.readyToPlay) {
+                this.withFriend = true;
                 this.connectToFriend(this.friendName);
             } else {
                 alert('Please select a song.');
             }
         } else {
             alert('Please enter another player\'s username.');
+        }
+    }
+
+    playAlone() {
+        if (this.readyToPlay) {
+            this.withFriend = false;
+            this.play();
+        } else {
+            alert('Please select a song.');
         }
     }
 
@@ -86,12 +115,19 @@ class GameData {
     }
 
     exitText() {
-        const title = document.querySelector('h2');
+        const title = document.querySelector('.inputTitle');
         const left = document.getElementById('songSelection');
         const right = document.getElementById('friendSelection');
+        const page = document.getElementById('songPage');
+        page.classList.add('exitLeft');
         title.classList.add('exitTitle');
         left.classList.add('exitLeft');
         right.classList.add('exitRight');
+
+        if (this.readyToPlay) {
+            const ready = document.querySelector('.readyToPlay');
+            ready.classList.add('exitRight');
+        }
     }
 
     connectWebSocket() {
@@ -107,6 +143,7 @@ class GameData {
             const msg = JSON.parse(await event.data);
             console.log(msg);
             if (msg.ready === true) {
+                this.withFriend = true;
                 if (msg.initiatingUser !== this.playerName) this.friendName = msg.initiatingUser;
                 this.songTitle = msg.song;
                 this.percent = msg.percent;

@@ -25,7 +25,7 @@ async function loginOrSignUp(endpoint) {
 }
 
 function setExitText() {
-    const title = document.querySelector('h1');
+    const title = document.querySelector('.h1-container');
     title.classList.add('exitTitle');
     const main = document.querySelector('section');
     main.classList.add('exitFields');
@@ -39,14 +39,14 @@ function signUp() {
     loginOrSignUp(`/api/auth/signUp`);
 }
 
-function getQuote() {
-    fetch('https://api.quotable.io/random')
-        .then((response) => response.json())
-        .then((data) => {
-            let quote = `\"` + data.content + `\" -` + data.author;
+// function getQuote() {
+//     fetch('https://api.quotable.io/random')
+//         .then((response) => response.json())
+//         .then((data) => {
+//             let quote = `\"` + data.content + `\" -` + data.author;
             
-            document.querySelector('h3').textContent = quote;
-        })
-}
+//             document.querySelector('h3').textContent = quote;
+//         })
+// }
 
-getQuote();
+// getQuote();

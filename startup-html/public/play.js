@@ -16,6 +16,7 @@ class Score {
 
 class Play {
     gameData;
+    withFriend;
     canPlay;
     currLyrics;
     origLen;
@@ -31,7 +32,14 @@ class Play {
 
     constructor() {
         this.gameData = JSON.parse(localStorage.getItem('gameData'));
-        this.configureSocket();
+        this.withFriend = this.gameData.withFriend;
+
+        if (this.withFriend) {
+            this.configureSocket();
+        } else {
+            this.configureAlone();
+        }
+
         this.currLyrics = this.gameData.lyrics.split(/\s+/);
 
         this.editLyrics();
@@ -48,6 +56,13 @@ class Play {
         this.initializeWord();
 
         this.canPlay = true;
+    }
+
+    configureAlone() {
+        const leftSide = document.getElementById('leftSide');
+        leftSide.classList.add('hide');
+        const name = document.getElementById('yourUsername');
+        name.classList.add('hide');
     }
 
     configureSocket() {
@@ -128,12 +143,6 @@ class Play {
         this.wordElement.textContent = this.word;
         container.appendChild(this.wordElement);
         container.scrollTop = container.scrollHeight;
-
-        // const falseInput = document.createElement('div');
-        // falseInput.setAttribute('contenteditable', '');
-        // falseInput.className = 'invisible';
-        // this.wordElement.appendChild(falseInput);
-        // falseInput.focus();
     }
 
     setNextWord() {
@@ -217,7 +226,7 @@ class Play {
 
         const msg = {
             type : 'progress',
-            word : this.currWord,
+            word : this.currCheckWord.toLowerCase(),
             percent : percent,
             friend : this.gameData.friendName
         }
@@ -241,8 +250,11 @@ class Play {
 
                     if (this.currCheckWord.length === this.checkWord.length) {
                         if (String(this.currCheckWord).toLowerCase() === String(this.checkWord).toLowerCase()) {
-                            this.wordElement.textContent = this.currWord;
-                            this.sendWord();
+                            this.wordElement.textContent = this.currCheckWord.toLowerCase();
+                            this.wordElement.classList.add('right');
+                            if (this.withFriend) {
+                                this.sendWord();
+                            }
                             this.setNextWord();
                         } else {
                             this.resetWord();
@@ -277,46 +289,10 @@ class Play {
     }
 }
 
-// async function simulateFriend() {
-//     const gameData = JSON.parse(localStorage.getItem('gameData'));
-//     let currLyrics = gameData.lyrics.split(/\s+/);
-//     let num = currLyrics.length * (gameData.percent / 100);
-//     if (num < 1) num = 1;
-//     currLyrics = currLyrics.slice(0, num);
-//     const origLen = currLyrics.length;
-    
-//     while (currLyrics.length > 0) {
-//         await setWord(currLyrics);
-//         const percent = Math.round((1 - currLyrics.length / origLen) * 100);
-//         document.getElementById('friendPercent').textContent = percent + '%';
-//     }
-// }
-
-// function setWord(currLyrics) {
-//     return new Promise((resolve) => {
-//         let delay = Math.random() * (2000 - 500) + 500;
-//         setTimeout(() => {
-//             const container = document.querySelector("#friendView");
-//             const wordElement = document.createElement('div');
-//             wordElement.className = 'word';
-//             wordElement.textContent = currLyrics[0];
-//             container.appendChild(wordElement);
-//             container.scrollTop = container.scrollHeight;
-//             currLyrics.shift();
-
-//             resolve(true);
-//         }, delay);
-//     });
-// }
-
 function quit() {
     console.log('quit');
     window.location.href = "select.html";
 }
-
-document.getElementById('quitBtn').addEventListener('click', quit);
-
-//simulateFriend();
 
 const play = new Play();
 play.play();

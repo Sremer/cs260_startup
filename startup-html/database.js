@@ -35,7 +35,7 @@ function addScore(score) {
 }
 
 function getRecentScores(username) {
-    const query = { username: { $regex: username, $options: 'i'} };
+    const query = { username: username };
     const options = {
         sort: { _id: -1 },
         limit: 5,
@@ -45,7 +45,7 @@ function getRecentScores(username) {
 }
 
 function getScoreByTitle(username, title) {
-    const query = { username: {$regex: username, $options: 'i'},
+    const query = { username: username,
                     title: {$regex: title, $options: 'i'} };
     const options = {
         sort: { _id: -1 },

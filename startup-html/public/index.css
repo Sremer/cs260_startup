@@ -1,12 +1,37 @@
+@import url('https://fonts.googleapis.com/css2?family=Prompt:wght@100&family=Roboto+Mono:wght@200;300;400&display=swap');
 
 body {
     text-align: center;
 }
 
+main {
+    display: flex;
+    flex-direction: column;
+}
+
+.h1-container {
+    flex: 1;
+    background: rgb(10, 10, 10);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 h1 {
     font-size: 10em;
-    font-family: 'Prompt', sans-serif;
-    margin: 0.2em;
+    font-weight: 300;
+    background: -webkit-linear-gradient(rgb(212, 211, 211), rgb(212, 211, 211));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+    font-family: 'Roboto Mono', monospace;
+    margin: 0;
+}
+
+#inputSection {
+    flex: 1;
+    background: rgb(212, 211, 211);
 }
 
 h3 {
@@ -42,9 +67,9 @@ h3 {
 
 @media (max-width:500px) {
     h1 {
-        font-size: 30vw;
-        margin: 10vw;
-        margin-left: 5vw;
+        font-size: 25vw;
+        /* margin: 10vw; */
+        /* margin-left: 5vw; */
     }
 }
 

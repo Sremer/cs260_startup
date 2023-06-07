@@ -1,7 +1,8 @@
-@import url('https://fonts.googleapis.com/css2?family=Prompt:wght@100&family=Source+Sans+Pro:wght@400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Prompt:wght@100&family=Roboto+Mono:wght@200;300;400&display=swap');
 
 * {
-    font-family: 'Prompt', sans-serif;
+    font-family: 'Roboto Mono', monospace;
+    color: rgb(10, 10, 10);
 }
 
 html {
@@ -13,8 +14,8 @@ body {
     margin: 0;
     height: 100%;
     width: 100%;
-    background-color: #1f2833;
-    color: white;
+    background: rgb(212, 211, 211);
+    color: rgb(212, 211, 211);
     display: flex;
     flex-direction: column;
 }
@@ -31,26 +32,6 @@ footer {
     flex: 0;
     text-align: center;
     margin-bottom: 5px;
-    font-family: 'Source Sans Pro', sans-serif;
-}
-
-input {
-    width: 400px;
-    height: 40px;
-    text-align: center;
-    font-size: large;
-    font-family: 'Source Sans Pro', sans-serif;
-    border-radius: 25px;
-    border: 2px solid white;
-    filter: none;
-}
-
-input:focus {
-    width: 410px;
-    height: 45px;
-    font-size: larger;
-    border: 1px solid black;
-    outline: none;
 }
 
 input.inputOffset {
@@ -58,45 +39,39 @@ input.inputOffset {
 }
 
 input.stylish {
-    color: white;
+    font-weight: 300;
+    color: rgb(10, 10, 10);
     margin-top: 30px;
     background: 0;
     border: 0;
-    border-bottom: solid #bdc3c7 2px;
     border-radius: 0;
     outline: none;
     width: 80vw;
-    max-width: 400px;
+    max-width: 300px;
     font-size: 1.5em;
+    text-align: center;
     transition: padding 0.3s 0.2s ease;
 }
-
-input.stylish:focus {
-    padding-bottom: 5px;
-        border-bottom: solid #66fcf1 3px;
-        width: 80vw;
-}
-  
   
 
 button.classic {
+    font-weight: 300;
     width: fit-content;
     min-width: 100px;
     height: 40px;
     margin: 20px 10px;
-    color: white;
+    color: rgb(10, 10, 10);
     text-align: center;
     font-size: large;
-    font-family: 'Source Sans Pro', sans-serif;
-    border-radius: 15px;
-    border: solid #66fcf1 2px;
-    background-color: #1f2833;
+    border-radius: 8px;
+    border: solid rgb(10, 10, 10) 1px;
+    background-color: transparent;
     cursor: pointer;
 }
 
 button.classic:hover {
-    background-color: #66fcf1;
-    color: white;
+    background-color: rgb(10, 10, 10);
+    color: rgb(212, 211, 211);
 }
 
 label {
