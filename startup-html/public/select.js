@@ -115,7 +115,7 @@ class GameData {
             } else {
                 console.log('not ready');
             }
-        } 
+        }
     }
 
     connectToFriend(friend) {
@@ -147,4 +147,6 @@ function logout() {
 }
 
 const game = new GameData();
+
+
 

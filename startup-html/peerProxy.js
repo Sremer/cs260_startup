@@ -17,18 +17,16 @@ function peerProxy(httpServer) {
     wss.on('connection', (ws) => {
         const connection = { id: uuid.v4(), alive: true, ws: ws };
         connections.push(connection);
+        connection.ws.send(JSON.stringify({ type : 'ready'}));
 
         ws.on('message', function message(data) {
             const msg = JSON.parse(data);
 
-            console.log(msg);
-
             if (msg.type === 'connect') {
-
                 connection.user = msg.user;
                 const friend = connections.find(obj => obj.user === msg.friend);
 
-                const returnMsg = { ready : false};
+                const returnMsg = { ready : false };
                 if (friend !== undefined) {
                     returnMsg.song = msg.song;
                     returnMsg.percent = msg.percent;
@@ -44,6 +42,16 @@ function peerProxy(httpServer) {
                     connection.ws.send(msgString);
                 }
 
+            } else if (msg.type === 'progress') {
+                const friend = connections.find(obj => obj.user === msg.friend);
+                if (friend !== undefined) {
+                    friend.ws.send(JSON.stringify(msg));
+                } else {
+                    console.log('friend lost connection');
+                }
+
+            } else if (msg.type === 'setUser') {
+                connection.user = msg.user;
             }
 
         })

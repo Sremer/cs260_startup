@@ -31,11 +31,11 @@ class Play {
 
     constructor() {
         this.gameData = JSON.parse(localStorage.getItem('gameData'));
+        this.configureSocket();
         this.currLyrics = this.gameData.lyrics.split(/\s+/);
 
         this.editLyrics();
         console.log(this.currLyrics);
-
         let num = this.currLyrics.length * (this.gameData.percent / 100);
         if (num < 1) num = 1;
         this.currLyrics = this.currLyrics.slice(0, num);
@@ -48,6 +48,41 @@ class Play {
         this.initializeWord();
 
         this.canPlay = true;
+    }
+
+    configureSocket() {
+        const protocol = window.location.protocol === 'http:' ? 'ws' : 'wss';
+        this.socket = new WebSocket(`${protocol}://${window.location.host}/ws`);
+        this.socket.onopen = (event) => {
+            console.log('Websocket connected');
+        };
+        this.socket.onclose = (event) => {
+            console.log('Websocket disconnected');
+        };
+        this.socket.onmessage = async (event) => {
+            console.log(event);
+            const msg = JSON.parse(await event.data);
+            console.log(msg);
+
+            if (msg.type === 'ready') {
+
+                const msg = {
+                    type : 'setUser',
+                    user : this.gameData.playerName
+                }
+                this.socket.send(JSON.stringify(msg));
+
+            } else {
+                const container = document.querySelector("#friendView");
+                const wordElement = document.createElement('div');
+                wordElement.className = 'word';
+                wordElement.textContent = msg.word;
+                container.appendChild(wordElement);
+                container.scrollTop = container.scrollHeight;
+
+                document.getElementById('friendPercent').textContent = msg.percent + '%';
+            }
+        }
     }
 
     editLyrics() {
@@ -177,6 +212,18 @@ class Play {
         localStorage.setItem('scores', JSON.stringify(data));
     }
 
+    sendWord() {
+        const percent = Math.round((1 - (this.currLyrics.length - 1) / this.origLen) * 100);
+
+        const msg = {
+            type : 'progress',
+            word : this.currWord,
+            percent : percent,
+            friend : this.gameData.friendName
+        }
+        this.socket.send(JSON.stringify(msg));
+    }
+
     play() {
         this.startTimer();
 
@@ -195,6 +242,7 @@ class Play {
                     if (this.currCheckWord.length === this.checkWord.length) {
                         if (String(this.currCheckWord).toLowerCase() === String(this.checkWord).toLowerCase()) {
                             this.wordElement.textContent = this.currWord;
+                            this.sendWord();
                             this.setNextWord();
                         } else {
                             this.resetWord();
@@ -229,37 +277,37 @@ class Play {
     }
 }
 
-async function simulateFriend() {
-    const gameData = JSON.parse(localStorage.getItem('gameData'));
-    let currLyrics = gameData.lyrics.split(/\s+/);
-    let num = currLyrics.length * (gameData.percent / 100);
-    if (num < 1) num = 1;
-    currLyrics = currLyrics.slice(0, num);
-    const origLen = currLyrics.length;
+// async function simulateFriend() {
+//     const gameData = JSON.parse(localStorage.getItem('gameData'));
+//     let currLyrics = gameData.lyrics.split(/\s+/);
+//     let num = currLyrics.length * (gameData.percent / 100);
+//     if (num < 1) num = 1;
+//     currLyrics = currLyrics.slice(0, num);
+//     const origLen = currLyrics.length;
     
-    while (currLyrics.length > 0) {
-        await setWord(currLyrics);
-        const percent = Math.round((1 - currLyrics.length / origLen) * 100);
-        document.getElementById('friendPercent').textContent = percent + '%';
-    }
-}
+//     while (currLyrics.length > 0) {
+//         await setWord(currLyrics);
+//         const percent = Math.round((1 - currLyrics.length / origLen) * 100);
+//         document.getElementById('friendPercent').textContent = percent + '%';
+//     }
+// }
 
-function setWord(currLyrics) {
-    return new Promise((resolve) => {
-        let delay = Math.random() * (2000 - 500) + 500;
-        setTimeout(() => {
-            const container = document.querySelector("#friendView");
-            const wordElement = document.createElement('div');
-            wordElement.className = 'word';
-            wordElement.textContent = currLyrics[0];
-            container.appendChild(wordElement);
-            container.scrollTop = container.scrollHeight;
-            currLyrics.shift();
+// function setWord(currLyrics) {
+//     return new Promise((resolve) => {
+//         let delay = Math.random() * (2000 - 500) + 500;
+//         setTimeout(() => {
+//             const container = document.querySelector("#friendView");
+//             const wordElement = document.createElement('div');
+//             wordElement.className = 'word';
+//             wordElement.textContent = currLyrics[0];
+//             container.appendChild(wordElement);
+//             container.scrollTop = container.scrollHeight;
+//             currLyrics.shift();
 
-            resolve(true);
-        }, delay);
-    });
-}
+//             resolve(true);
+//         }, delay);
+//     });
+// }
 
 function quit() {
     console.log('quit');
@@ -268,7 +316,7 @@ function quit() {
 
 document.getElementById('quitBtn').addEventListener('click', quit);
 
-simulateFriend();
+//simulateFriend();
 
 const play = new Play();
 play.play();
