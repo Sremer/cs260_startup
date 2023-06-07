@@ -15,7 +15,7 @@ function peerProxy(httpServer) {
     let connections = [];
 
     wss.on('connection', (ws) => {
-        const connection = { id: uuid.v4(), alive: true, ws: ws };
+        const connection = { id: uuid.v4(), alive: true, ws: ws, finished : false };
         connections.push(connection);
         connection.ws.send(JSON.stringify({ type : 'ready'}));
 
@@ -52,6 +52,26 @@ function peerProxy(httpServer) {
 
             } else if (msg.type === 'setUser') {
                 connection.user = msg.user;
+
+            } else if (msg.type === 'finish') {
+                connection.finished = true;
+                connection.time = msg.time;
+
+                const friend = connections.find(obj => obj.user === msg.friend);
+                if (friend !== undefined) {
+                    if (friend.finished) {
+                        const returnMsg = {};
+                        returnMsg.type = 'finish';
+
+                        returnMsg.time = msg.time;
+                        friend.ws.send(JSON.stringify(returnMsg));
+
+                        returnMsg.time = friend.time;
+                        connection.ws.send(JSON.stringify(returnMsg));
+                    }
+                } else {
+                    console.log('friend lost connection');
+                }
             }
 
         })

@@ -4,7 +4,7 @@
     font-weight: 300;
 }
 
-main {
+#playContainer {
     display: flex;
     flex-direction: row;
 }
@@ -17,6 +17,14 @@ main {
 #rightSide {
     flex: 1;
     text-align: center;
+}
+
+#songTitle {
+    text-align: center;
+    font-size: xx-large;
+    font-weight: 400;
+    color: gray;
+    margin-bottom: 10px;
 }
 
 #friendField {
@@ -86,6 +94,39 @@ main {
     filter: blur(3px);
 }
 
+#finishMode {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.card {
+    background: rgb(233, 231, 231);
+    border: none;
+    text-align: center;
+    font-size: x-large;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    width: 40%;
+}
+
+.card:hover {
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+
+.container1 {
+    padding: 2px 16px;
+}
+
+.finalSpacing {
+    margin: 20px;
+}
+
+#finalUsername, #finalFriendUsername {
+    font-weight: 400;
+    color: grey;
+}
+
 @media (max-width:600px) {
     .songContainer {
         width: 80vw;
@@ -114,11 +155,19 @@ main {
     #friendPercent {
         display: inline;
     }
+
+    .card {
+        width: 80%;
+    }
 }
 
 @media (max-width:354px) {
     #leftSide {
-        max-height: 20vw;
+        min-height: 60px;
+    }
+
+    #songTitle {
+        font-size: x-large;
     }
 }
 
@@ -187,7 +236,7 @@ main {
 }
 
 @media (max-width:1000px) {
-    main {
+    #playContainer {
         display: flex;
         flex-direction: column;
     }

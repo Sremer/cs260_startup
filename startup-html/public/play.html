@@ -17,9 +17,9 @@
     
     <body>
         <div class="container">
-            <header class="d-flex flex-wrap align-items-center justify-content-left justify-content-md-between py-2 mb-0 text-light">
+            <header class="d-flex flex-wrap align-items-center justify-content-left justify-content-md-between py-1 mb-0 text-light">
                 
-              <ul class="nav col-8 col-md-auto mb-2 mb-md-0">
+              <ul class="nav col-8 col-md-auto mb-1 mb-md-0">
                 <li><a href="select.html" class="nav-link px-2 link-dark">quit</a></li>
               </ul>
         
@@ -27,34 +27,46 @@
         </div>
 
         <main>
-            <section id="leftSide">
-                <div id="friendInfo">
-                    <h2 id="friendUsername">Friend's Username</h2>
-                    <span id="friendPercent">0%</span>
-                </div>
-                <div id="friendView" class="songContainer">
-                    
-                </div>
-            </section>
+            <div id="playMode">
+                <div id="songTitle">hey</div>
+                <section id="playContainer">
+                    <section id="leftSide">
+                        <div id="friendInfo">
+                            <h2 id="friendUsername">Friend's Username</h2>
+                            <span id="friendPercent">0%</span>
+                        </div>
+                        <div id="friendView" class="songContainer">
+                            
+                        </div>
+                    </section>
 
-            <section id="rightSide">
-                <h2 id="yourUsername">Your Username</h2>
-                <div id="stats">
-                    <span id="timer">00:00</span>
-                    <span id="userPercent">0%</span>
-                </div>
-                <div><input id="mobileInput" type="text" class="stylish" placeholder="Next word"/></div>
-                <div id="userView" class="songContainer">
+                    <section id="rightSide">
+                        <h2 id="yourUsername">Your Username</h2>
+                        <div id="stats">
+                            <span id="timer">00:00</span>
+                            <span id="userPercent">0%</span>
+                        </div>
+                        <div><input id="mobileInput" type="text" class="stylish" placeholder="Next word"/></div>
+                        <div id="userView" class="songContainer">
 
-                </div>
-            </section>
+                        </div>
+                    </section>
+                </section>
+            </div>
 
+            <div id="finishMode">
+                <div class="card">
+                    <div class="container1">
+                      <div class="finalSpacing" id="finalUsername">username</div>
+                      <div class="finalSpacing" id="finalTime">00:00</div>
+                      <div class="finalSpacing" id="finalFriendUsername">friend</div>
+                      <div class="finalSpacing" id="finalFriendTime">00:00</div>
+                      <div class="finalSpacing" id="comment">nice work!</div>
+                      <div><button class="classic" onclick="finish()">finish</button></div>
+                    </div>
+                  </div>
+            </div>
         </main>
-
-        <footer>
-            <div>Seth Remer</div>
-            <div><a class="bottomTag" href="https://github.com/Sremer/cs260_startup"><img id="githubLogo" alt="github" src="github-mark-white.png"/></a></div>
-        </footer>
 
         <script src="play.js"></script>
         <script

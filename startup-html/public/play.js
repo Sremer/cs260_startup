@@ -31,6 +31,9 @@ class Play {
     minutes;
 
     constructor() {
+        this.setDisplay('playMode', 'block');
+        this.setDisplay('finishMode', 'none');
+
         this.gameData = JSON.parse(localStorage.getItem('gameData'));
         this.withFriend = this.gameData.withFriend;
 
@@ -51,11 +54,19 @@ class Play {
 
         document.getElementById('friendUsername').textContent = this.gameData.friendName;
         document.getElementById('yourUsername').textContent = this.gameData.playerName;
+        document.getElementById('songTitle').textContent = this.gameData.songTitle;
 
         this.currWord = this.currLyrics[0];
         this.initializeWord();
 
         this.canPlay = true;
+    }
+
+    setDisplay(controlId, display) {
+        const playControlEl = document.querySelector(`#${controlId}`);
+        if (playControlEl) {
+          playControlEl.style.display = display;
+        }
     }
 
     configureAlone() {
@@ -86,6 +97,12 @@ class Play {
                     user : this.gameData.playerName
                 }
                 this.socket.send(JSON.stringify(msg));
+
+            } else if (msg.type === 'finish') {
+
+                this.setFinishDisplay();
+                document.getElementById('finalFriendUsername').textContent = this.gameData.friendName;
+                document.getElementById('finalFriendTime').textContent = msg.time;
 
             } else {
                 const container = document.querySelector("#friendView");
@@ -156,9 +173,35 @@ class Play {
             clearInterval(this.timerId);
             this.recordScore();
             this.canPlay = false;
+            this.finish();
 
         }
         this.setPercent();
+    }
+
+    finish() {
+        if (this.withFriend) {
+            const msg = {
+                type : 'finish',
+                time : document.getElementById('timer').textContent,
+                friend : this.gameData.friendName
+            }
+            this.socket.send(JSON.stringify(msg));
+
+        } else {
+            console.log('here');
+            this.setFinishDisplay();
+            this.setDisplay('finalFriendUsername', 'none');
+            this.setDisplay('finalFriendTime', 'none');
+        }
+    }
+
+    setFinishDisplay() {
+        this.setDisplay('playMode', 'none');
+        this.setDisplay('finishMode', 'flex');
+
+        document.getElementById('finalUsername').textContent = this.gameData.playerName;
+        document.getElementById('finalTime').textContent = document.getElementById('timer').textContent;
     }
 
     resetWord() {
@@ -289,8 +332,7 @@ class Play {
     }
 }
 
-function quit() {
-    console.log('quit');
+function finish() {
     window.location.href = "select.html";
 }
 
