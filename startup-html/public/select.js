@@ -15,18 +15,25 @@ class GameData {
         this.connectWebSocket();
     }
 
-    async getSong() {
+    async getSong() { 
         this.songTitle = String(document.querySelector("#songTitle").value).toLowerCase();
         this.artist = document.querySelector("#artistName").value;
         this.percent = Number(document.querySelector("#percentSelect").value);
+
         if (!!this.songTitle && !!this.artist) {
+
             if (!!this.percent) {
+
                 if (this.percent <= 100 && this.percent > 0) {
+
                     this.lyrics = await this.getLyrics(this.songTitle, this.artist);
+
                     if (this.lyrics.length > 0) {
+
                         console.log("Ready to play");
                         this.readyToPlay = true;
                         this.displayReadyToPlay();
+
                     } else {
                         alert('Could not find song');
                         this.deleteReadyToPlay();
@@ -34,6 +41,7 @@ class GameData {
                 }
             } else {
                 alert('Please enter what percentage of the song you would like to play. Enter a number from 1 to 100.');
+
             }
         } else {
             alert('Please enter a song title and artist name.');
@@ -119,7 +127,7 @@ class GameData {
         const left = document.getElementById('songSelection');
         const right = document.getElementById('friendSelection');
         const page = document.getElementById('songPage');
-        page.classList.add('exitLeft');
+        page.classList.add('exitTitle');
         title.classList.add('exitTitle');
         left.classList.add('exitLeft');
         right.classList.add('exitRight');
@@ -133,12 +141,15 @@ class GameData {
     connectWebSocket() {
         const protocol = window.location.protocol === 'http:' ? 'ws' : 'wss';
         this.socket = new WebSocket(`${protocol}://${window.location.host}/ws`);
+
         this.socket.onopen = (event) => {
             console.log('Websocket connected');
         };
+
         this.socket.onclose = (event) => {
             console.log('Websocket disconnected');
         };
+        
         this.socket.onmessage = async (event) => {
             const msg = JSON.parse(await event.data);
             console.log(msg);

@@ -48,7 +48,9 @@ select {
     display: flex;
     flex-direction: row;
     background: rgb(10, 10, 10);
+}
 
+.enterPage {
     animation: textEnter 1.9s;
 }
 
@@ -197,6 +199,10 @@ button.classic:hover, button.classic:focus {
 
     #friendUsername {
         width: 90vw;
+    }
+
+    input.stylish {
+        margin-top: 10px;
     }
 
 }

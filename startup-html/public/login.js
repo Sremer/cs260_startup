@@ -1,26 +1,32 @@
 async function loginOrSignUp(endpoint) {
     const username = document.querySelector("#username").value;
     const password = document.querySelector("#password").value;
-    const response = await fetch(endpoint, {
-        method: 'post',
-        body: JSON.stringify({ username: username, password: password }),
-        headers: {
-          'Content-type': 'application/json; charset=UTF-8',
-        },
-    });
 
-    if (response.ok) {
-        localStorage.setItem('username', username);
+    if (!!username && !!password) {
         
-        setExitText();
+        const response = await fetch(endpoint, {
+            method: 'post',
+            body: JSON.stringify({ username: username, password: password }),
+            headers: {
+            'Content-type': 'application/json; charset=UTF-8',
+            },
+        });
 
-        setTimeout(()=>{
-            window.location.href = "select.html";
-        }, 1200);
+        if (response.ok) {
+            localStorage.setItem('username', username);
+            
+            setExitText();
 
+            setTimeout(()=>{
+                window.location.href = "select.html";
+            }, 1200);
+
+        } else {
+            const body = await response.json();
+            alert(body.msg);
+        }
     } else {
-        const body = await response.json();
-        alert(body.msg);
+        alert('Please fill out the fields');
     }
 }
 

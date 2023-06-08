@@ -105,6 +105,10 @@ a.bottomTag:active {
     input:focus {
         width: 71vw;
     }
+
+    input.stylish {
+        margin-top: 20px;
+    }
 }
 
 @media (max-width:800px) {
