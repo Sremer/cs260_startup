@@ -330,10 +330,15 @@ class Play {
             }
         });
     }
+
+    exit() {
+        document.getElementById('scoreCard').classList.add('cardExit');
+        setTimeout(window.location.href = "select.html", 1000);
+    }
 }
 
 function finish() {
-    window.location.href = "select.html";
+    play.exit();
 }
 
 const play = new Play();

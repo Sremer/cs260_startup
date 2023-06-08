@@ -153,7 +153,16 @@ class GameData {
         this.socket.onmessage = async (event) => {
             const msg = JSON.parse(await event.data);
             console.log(msg);
-            if (msg.ready === true) {
+
+            if (msg.type === 'ready') {
+
+                const msg = {
+                    type : 'setUser',
+                    user : this.playerName
+                }
+                this.socket.send(JSON.stringify(msg));
+
+            } else if (msg.ready === true) {
                 this.withFriend = true;
                 if (msg.initiatingUser !== this.playerName) this.friendName = msg.initiatingUser;
                 this.songTitle = msg.song;
@@ -170,7 +179,7 @@ class GameData {
         const msg = {
             type : 'connect',
             user : this.playerName,
-            friend : this.friend,
+            friend : this.friendName,
             song : this.songTitle,
             percent : this.percent,
             lyrics : this.lyrics

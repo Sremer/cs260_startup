@@ -15,7 +15,7 @@ function peerProxy(httpServer) {
     let connections = [];
 
     wss.on('connection', (ws) => {
-        const connection = { id: uuid.v4(), alive: true, ws: ws, finished : false };
+        const connection = { id: uuid.v4(), alive: true, ws: ws, finished : false, user:'' };
         connections.push(connection);
         connection.ws.send(JSON.stringify({ type : 'ready'}));
 
@@ -24,7 +24,10 @@ function peerProxy(httpServer) {
 
             if (msg.type === 'connect') {
                 connection.user = msg.user;
+                console.log(msg.friend);
+                console.log(connections);
                 const friend = connections.find(obj => obj.user === msg.friend);
+                console.log(friend);
 
                 const returnMsg = { ready : false };
                 if (friend !== undefined) {

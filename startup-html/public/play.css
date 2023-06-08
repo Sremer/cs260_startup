@@ -114,6 +114,14 @@
     box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
 }
 
+.cardEnter {
+    animation: textEnter 1s;
+}
+
+.cardExit {
+    animation: textExit 1s;
+}
+
 .container1 {
     padding: 2px 16px;
 }
@@ -232,6 +240,20 @@
 
     100% {
         translate: 0px 0;
+    }
+}
+
+@keyframes textExit {
+    0% {
+        translate: 0px 0;
+    }
+
+    80% {
+        translate: 20px 0;
+    }
+
+    100% {
+        translate: -1000px 0;
     }
 }
 
