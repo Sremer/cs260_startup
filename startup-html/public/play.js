@@ -120,7 +120,7 @@ class Play {
     editLyrics() {
         let index = this.currLyrics.indexOf('...');
         console.log(index);
-        if (index > 1 && this.currLyrics.length > index) {
+        if (index > 0 && this.currLyrics.length > index) {
             if (this.currLyrics[index + 1] === '*******') {
                 this.currLyrics = this.currLyrics.slice(0, index);
             }
