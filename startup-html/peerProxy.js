@@ -24,10 +24,7 @@ function peerProxy(httpServer) {
 
             if (msg.type === 'connect') {
                 connection.user = msg.user;
-                console.log(msg.friend);
-                console.log(connections);
                 const friend = connections.find(obj => obj.user === msg.friend);
-                console.log(friend);
 
                 const returnMsg = { ready : false };
                 if (friend !== undefined) {

@@ -43,6 +43,13 @@ select {
     color: white;
 }
 
+#topSection {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
 #songPage {
     flex: 1;
     display: flex;
@@ -68,8 +75,12 @@ select {
     animation: textEnter 2.1s;
 }
 
+.enterSmallTitle {
+    animation: textEnter 2.3s;
+}
+
 #percentSelect {
-    width: 50px;
+    margin-right: 0;
     text-align: center;
 }
 
@@ -93,8 +104,8 @@ select {
     animation: textEnter 2.2s;
 }
 
-.readyToPlay {
-    margin-right: 18px;
+.smallTitle {
+    margin-right: 1.5vw;
     color: grey;
 }
 
@@ -193,8 +204,6 @@ button.classic:hover, button.classic:focus {
 
     #percentSelect {
         margin-top: 0;
-        display: block;
-        margin-left: calc(50vw - 30px);
     }
 
     #friendUsername {
@@ -217,4 +226,8 @@ button.classic:hover, button.classic:focus {
 
 .exitRight {
     animation: textExit 2s;
+}
+
+.exitSmallTitle {
+    animation: textExit 2.9s;
 }

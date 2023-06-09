@@ -71,9 +71,11 @@ class GameData {
         const title = document.querySelector('.inputTitle');
         const left = document.getElementById('songSelection');
         const page = document.getElementById('songPage');
+        const smallTitle = document.getElementById('smallTitle');
         page.classList.add('exitTitle');
         title.classList.add('exitTitle');
         left.classList.add('exitLeft');
+        smallTitle.classList.add('exitSmallTitle');
     }
 
     connectWebSocket() {

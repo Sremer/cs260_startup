@@ -83,3 +83,10 @@ For this deliverable I added user registration and authentication.
 - **Existing user** - Verifies username and password from the data stored in the database.
 - **Use MongoDB to store credentials** - done!
 - **Restricts functionality** - You can't select songs or see scores until you have logged in. 
+
+## WebSocket deliverable
+For this deliverable I enabled real time head-to-head play.
+- **Backend listens for WebSocket connection** - done!
+- **Frontend makes WebSocket connection** - done!
+- **Data sent over WebSocket connection** - done!
+- **WebSocket data displayed** - Players can play against each other in realtime.
