@@ -32,7 +32,7 @@ class GameData {
 
                         console.log("Ready to play");
                         this.readyToPlay = true;
-                        this.displayReadyToPlay();
+                        this.goToMode();
 
                     } else {
                         alert('Could not find song');
@@ -67,75 +67,13 @@ class GameData {
         }
     }
 
-    displayReadyToPlay() {
-        const main = document.querySelector('main');
-        if (main.firstChild.classList === undefined) {
-            const main = document.querySelector('main');
-            const newDiv = document.createElement('div');
-            newDiv.textContent = 'ready to play';
-            newDiv.classList.add('readyToPlay');
-            main.insertBefore(newDiv, main.firstChild);
-        }
-    }
-
-    deleteReadyToPlay() {
-        const main = document.querySelector('main');
-        if (main.firstChild.classList !== undefined) {
-            main.removeChild(main.firstChild);
-        }
-    }
-
-    getFriend() {
-        this.friendName = document.querySelector("#friendUsername").value;
-        if (!!this.friendName) {
-            if (this.readyToPlay) {
-                this.withFriend = true;
-                this.connectToFriend(this.friendName);
-            } else {
-                alert('Please select a song.');
-            }
-        } else {
-            alert('Please enter another player\'s username.');
-        }
-    }
-
-    playAlone() {
-        if (this.readyToPlay) {
-            this.withFriend = false;
-            this.play();
-        } else {
-            alert('Please select a song.');
-        }
-    }
-
-    displaySongTitle() {
-        if (!!document.getElementById('displaySongTitle')) {
-            document.getElementById('displaySongTitle').textContent = this.songTitle;
-
-        } else {
-            const newChild = document.createElement('div');
-            newChild.setAttribute('id', 'displaySongTitle');
-            newChild.textContent = this.songTitle;
-        
-            const parentElement = document.querySelector("#songSelection");
-            parentElement.insertBefore(newChild, parentElement.firstChild);
-        }
-    }
-
     exitText() {
         const title = document.querySelector('.inputTitle');
         const left = document.getElementById('songSelection');
-        const right = document.getElementById('friendSelection');
         const page = document.getElementById('songPage');
         page.classList.add('exitTitle');
         title.classList.add('exitTitle');
         left.classList.add('exitLeft');
-        right.classList.add('exitRight');
-
-        if (this.readyToPlay) {
-            const ready = document.querySelector('.readyToPlay');
-            ready.classList.add('exitRight');
-        }
     }
 
     connectWebSocket() {
@@ -169,7 +107,9 @@ class GameData {
                 this.percent = msg.percent;
                 this.lyrics = msg.lyrics;
                 this.play();
+
             } else {
+
                 console.log('not ready');
             }
         }
@@ -185,6 +125,14 @@ class GameData {
             lyrics : this.lyrics
         }
         this.socket.send(JSON.stringify(msg));
+    }
+
+    goToMode() {
+        localStorage.setItem('gameData', JSON.stringify(this));
+        this.exitText();
+        setTimeout(()=>{
+            window.location.href = "mode.html";
+        }, 1500);
     }
 
     play() {

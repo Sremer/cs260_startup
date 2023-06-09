@@ -68,6 +68,14 @@ button.light:hover, button.light:focus {
     animation: textEnter 2.1s;
 }
 
+.exitTop {
+    animation: textExit 2.1s;
+}
+
+.exitBottom {
+    animation: textExit 2s;
+}
+
 @keyframes textExit {
     0% {
         translate: 0 0px;

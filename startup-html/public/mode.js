@@ -3,7 +3,54 @@ class Mode {
 
     constructor() {
         this.gameData = JSON.parse(localStorage.getItem('gameData'));
-        
+        this.configureSocket();
+    }
+
+    play() {
+        localStorage.setItem('gameData', JSON.stringify(this.gameData));
+        this.exitText();
+        setTimeout(()=>{
+            window.location.href = "play.html";
+        }, 1500);
+    }
+
+    playAlone() {
+        this.gameData.withFriend = false;
+        this.play();
+    }
+
+    getFriend() {
+        this.gameData.friendName = document.querySelector("#challengeFriend").value;
+        if (!!this.gameData.friendName) {
+            this.gameData.withFriend = true;
+            this.connectToFriend(this.gameData.friendName);
+        } else {
+            alert('Please enter another player\'s username.');
+        }
+    }
+
+    exitText() {
+        document.getElementById('friendSection').classList.add('exitTop');
+        document.getElementById('aloneSection').classList.add('exitBottom');
+    }
+
+    switchScreens(location) {
+        this.exitText();
+        setTimeout(()=>{
+            window.location.href = `${location}.html`;
+        }, 1500);
+    }
+
+    connectToFriend(friend) {
+        const msg = {
+            type : 'connect',
+            user : this.gameData.playerName,
+            friend : this.gameData.friendName,
+            song : this.gameData.songTitle,
+            percent : this.gameData.percent,
+            lyrics : this.gameData.lyrics
+        }
+        this.socket.send(JSON.stringify(msg));
     }
 
     configureSocket() {
@@ -29,8 +76,27 @@ class Mode {
                 }
                 this.socket.send(JSON.stringify(msg));
 
+            } else if (msg.ready === true) {
+                this.gameData.withFriend = true;
+                if (msg.initiatingUser !== this.gameData.playerName) this.gameData.friendName = msg.initiatingUser;
+                this.gameData.songTitle = msg.song;
+                this.gameData.percent = msg.percent;
+                this.gameData.lyrics = msg.lyrics;
+                this.play();
+
+            } else {
+                console.log('not ready');
             }
         }    
     }
 
 }
+
+function logout() {
+    localStorage.removeItem('username');
+    fetch(`/api/auth/logout`, {
+        method: 'delete',
+    }).then(() => (window.location.href = '/'));
+}
+
+const mode = new Mode();
