@@ -3,5 +3,5 @@ node_modules/
 /playwright-report/
 /playwright/.cache/
 startup-html/node_modules/
-startup-html/config.json
+startup-html/service/config.json
 /simon-db/dbConfig.json
