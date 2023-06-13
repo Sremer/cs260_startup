@@ -83,12 +83,13 @@ export function Select() {
   function logout() {
     localStorage.removeItem('username');
     gameData.clearData();
+    socketHandler.closeConnection();
     fetch(`/api/auth/logout`, {
         method: 'delete',
     }).then(() => (navigate('/')));
   }
 
-  // configure the websocket to take messages needed for the select page
+  // configures the websocket to take messages needed for the select page
   function configureSocket(socket) {
     socket.onmessage = async (event) => {
       const msg = JSON.parse(await event.data);

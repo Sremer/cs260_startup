@@ -1,4 +1,4 @@
-body {
+.body {
     background: rgb(10, 10, 10);
 }
 
@@ -22,42 +22,6 @@ main {
     align-items: center;
     justify-content: center;
     flex-direction: column;
-}
-
-input.light {
-    font-weight: 300;
-    color: rgb(212, 211, 211);
-    margin-top: 30px;
-    background: 0;
-    border: 0;
-    border-radius: 0;
-    outline: none;
-    width: 80vw;
-    max-width: 300px;
-    font-size: 1.5em;
-    text-align: center;
-    transition: padding 0.3s 0.2s ease;
-}
-
-button.light {
-    font-weight: 300;
-    width: fit-content;
-    min-width: 100px;
-    height: 40px;
-    margin: 20px 10px;
-    color: rgb(212, 211, 211);
-    text-align: center;
-    font-size: large;
-    border-radius: 8px;
-    border: solid rgb(212, 211, 211) 1px;
-    background-color: transparent;
-    cursor: pointer;
-}
-
-button.light:hover, button.light:focus {
-    background-color: rgb(212, 211, 211);
-    color: rgb(10, 10, 10);
-    outline: none;
 }
 
 .enterTop {

@@ -40,11 +40,16 @@ class SocketHandler {
         return socket;
     }
 
+    closeConnection() {
+        this.socket = null;
+    }
+
     getSocket() {
         if (this.socket === null) {
             this.socket = this.startSocket();
             return this.socket;
         } else {
+            if (this.socket.readyState === WebSocket.CLOSED) this.socket = this.startSocket();
             return this.socket;
         }
     }
