@@ -57,7 +57,7 @@ export function Login() {
                   <input 
                     id="username" 
                     type="text" 
-                    className="dark" 
+                    className="normal dark" 
                     onChange={(e) => setUsername(e.target.value)} 
                     placeholder="username" />
                 </div>
@@ -66,7 +66,7 @@ export function Login() {
                   <input 
                     id="password" 
                     type="password" 
-                    className="dark"
+                    className="normal dark"
                     onChange={(e) => setPassword(e.target.value)} 
                     placeholder="password"/>
                 </div>

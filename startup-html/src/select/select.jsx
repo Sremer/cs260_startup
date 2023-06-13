@@ -155,7 +155,7 @@ export function Select() {
                     <input 
                       type="text" 
                       id="artistName" 
-                      className="light" 
+                      className="normal light" 
                       onChange={(e) => setSongArtist(e.target.value)}
                       placeholder="artist name" 
                       required
@@ -166,7 +166,7 @@ export function Select() {
                     <input 
                       type="text" 
                       id="percentSelect" 
-                      className="light" 
+                      className="normal light" 
                       onChange={(e) => setPercent(e.target.value)}
                       placeholder="%" 
                       required

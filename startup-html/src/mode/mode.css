@@ -2,6 +2,14 @@
     background: rgb(10, 10, 10);
 }
 
+.modePage {
+    height: 100%;
+    width: 100%;
+    background: rgb(10, 10, 10);
+    display: flex;
+    flex-direction: column;
+}
+
 main {
     display: flex;
     flex-direction: column;

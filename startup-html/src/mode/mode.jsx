@@ -90,7 +90,7 @@ export function Mode() {
   }
 
   return (
-    <>
+    <div className='modePage'>
       <div className="container">
           <header className="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-0 text-light">
               
@@ -111,7 +111,7 @@ export function Mode() {
                 <input 
                   type="text" 
                   id="challengeFriend"
-                  className="light"
+                  className="normal light"
                   onChange={(e) => setFriendName(e.target.value)} 
                   placeholder="challenge a friend"
                 />
@@ -124,6 +124,6 @@ export function Mode() {
               <div><button className="normal dark" onClick={() => playAlone()}>play alone</button></div>
           </section>
       </main>
-    </>
+    </div>
   );
 }
