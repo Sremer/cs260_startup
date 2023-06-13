@@ -11,14 +11,16 @@ import { Select } from './select/select';
 export default function App() {
   return (
     <BrowserRouter>
-      <Routes>
-        <Route path='/' element={ <Login /> } />
-        <Route path='/select' element={ <Select /> } />
-        <Route path='/mode' element={ <Mode /> } />
-        <Route path='/play' element={ <Play /> } />
-        <Route path='/scores' element={ <Scores/> } />
-        <Route path='*' element={ <NotFound /> } />
-      </Routes>
+      <div className='body'>
+        <Routes>
+          <Route path='/' element={ <Login /> } />
+          <Route path='/select' element={ <Select /> } />
+          <Route path='/mode' element={ <Mode /> } />
+          <Route path='/play' element={ <Play /> } />
+          <Route path='/scores' element={ <Scores/> } />
+          <Route path='*' element={ <NotFound /> } />
+        </Routes>
+      </div>
     </BrowserRouter>
   );
 }

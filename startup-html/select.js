@@ -36,7 +36,6 @@ class GameData {
 
                     } else {
                         alert('Could not find song');
-                        this.deleteReadyToPlay();
                     }
                 }
             } else {
