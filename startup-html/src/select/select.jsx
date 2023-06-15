@@ -19,7 +19,7 @@ export function Select() {
     gameData.clearData();
     const socket = socketHandler.getSocket();
     configureSocket(socket);
-  })
+  }, [])
 
   // validates song data, retrieves lyrics, and goes to mode page
   async function getSong() { 

@@ -13,16 +13,19 @@ export function Mode() {
   const [friendName, setFriendName] = React.useState('');
   const [exitState, setExitState] = React.useState(false);
 
+  // on loading the page, configures the websocket
   React.useEffect(() => {
     socket = socketHandler.getSocket();
     configureSocket(socket);
-  });
+  }, []);
 
+  // called if the player chooses to play alone
   function playAlone() {
     gameData.withFriend = false;
     exitPage('/play');
   }
 
+  // called if the player chooses to play with a friend and makes the request to websocket
   function playWithFriend() {
     if (!!friendName) {
         gameData.withFriend = true;
@@ -33,6 +36,7 @@ export function Mode() {
     }
   }
 
+  // sends the message to websocket
   function connectToFriend(friend) {
     const msg = {
         type : 'connect',
@@ -45,6 +49,7 @@ export function Mode() {
     socket.send(JSON.stringify(msg));
   }
 
+  // triggers the exit animation and goes to the desired location
   function exitPage(location) {
     setExitState(true);
     setTimeout(()=>{
@@ -62,6 +67,7 @@ export function Mode() {
     }).then(() => (navigate('/')));
   }
 
+  // configures the websocket connection for the mode page
   function configureSocket(socket) {
       socket.onmessage = async (event) => {
       const msg = JSON.parse(await event.data);
