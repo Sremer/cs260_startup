@@ -5,3 +5,4 @@ node_modules/
 startup-html/node_modules/
 startup-html/service/config.json
 /simon-db/dbConfig.json
+dist/

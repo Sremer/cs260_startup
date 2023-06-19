@@ -78,7 +78,7 @@ export function Login() {
 
         <footer>
             <div>Seth Remer</div>
-            <div><a className="bottomTag" href="https://github.com/Sremer/cs260_startup"><img id="githubLogo" alt="github" src="../resources/github-mark-white.png"/></a></div>
+            <div><a className="bottomTag" href="https://github.com/Sremer/cs260_startup"><img id="githubLogo" alt="github" src={'/resources/github-mark-white.png'}/></a></div>
         </footer>
     </>
   );
