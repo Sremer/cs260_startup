@@ -9,14 +9,14 @@ import './mode.css'
 
 export function Mode() {
   const navigate = useNavigate();
-  let socket = null;
+  const socket = React.useRef(null);
   const [friendName, setFriendName] = React.useState('');
   const [exitState, setExitState] = React.useState(false);
 
   // on loading the page, configures the websocket
   React.useEffect(() => {
-    socket = socketHandler.getSocket();
-    configureSocket(socket);
+    socket.current = socketHandler.getSocket();
+    configureSocket(socket.current);
   }, []);
 
   // called if the player chooses to play alone
@@ -46,7 +46,7 @@ export function Mode() {
         percent : gameData.percent,
         lyrics : gameData.lyrics
     }
-    socket.send(JSON.stringify(msg));
+    socket.current.send(JSON.stringify(msg));
   }
 
   // triggers the exit animation and goes to the desired location

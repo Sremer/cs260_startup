@@ -8,62 +8,84 @@ export function SongContainer(props) {
     const [wordInProg, setWordInProg] = React.useState('');
     const [wrongState, setWrongState] = React.useState(false);
 
-    let checkWord = '';
-    let originLen = 0;
-    let resetMobileInput = false;
-    let lyrics = [];
+    const finished = React.useRef(false);
+    const checkWord = React.useRef('');
+    const currWord = React.useRef('');
+    const originLen = React.useRef(0);
+    const resetMobileInput = React.useRef(false);
+    const lyrics = React.useRef([]);
     const indexRef = React.useRef(0);
+    const containerRef = React.useRef(null);
 
+    // edits the lyrics and sets the first word when the page loads
     React.useEffect(() => {
-        lyrics = editLyrics(gameData.lyrics);
-        initializeWord(lyrics[0]);
+        lyrics.current = editLyrics(gameData.lyrics);
+        initializeWord(lyrics.current[0]);
     }, []);
 
+    // called when the current word is updated
     React.useEffect(() => {
-    const handleKeyDown = (e) => {
-        console.log('index: ' + indexRef.current);
+        const container = containerRef.current;
+        container.scrollTop = container.scrollHeight;
 
-        if (isAlpha(e.key)) {
-        let replaceKey = (indexRef.current === 0) ? '_' : ' _';
-        console.log(wordInProg);
-        setWordInProg(wordInProg.replace(replaceKey, e.key));
+        // updates the game when a key is pressed
+        const handleKeyDown = (e) => {
+            if (isAlpha(e.key)) {
+                let replaceKey = (indexRef.current === 0) ? '_' : ' _';
+                setWordInProg(wordInProg.replace(replaceKey, e.key));
+                currWord.current += e.key;
 
-        console.log(wordInProg);
-        console.log(checkWord);
+                if (currWord.current.length === checkWord.current.length) {
 
-        if (wordInProg.length === checkWord.length) {
-            if (String(wordInProg).toLowerCase() === String(checkWord).toLowerCase()) {
-            setDisplayedLyrics([...displayedLyrics, checkWord.toLowerCase()]);
-            if (gameData.withFriend) sendWord(checkWord.toLowerCase());
-            setNextWord();
-            } else {
-            resetWord();
+                    if (String(currWord.current).toLowerCase() === String(checkWord.current).toLowerCase()) {
+
+                        setDisplayedLyrics([...displayedLyrics, checkWord.current.toLowerCase()]);
+                        if (gameData.withFriend) sendWord(checkWord.current.toLowerCase());
+                        setNextWord();
+
+                    } else {
+                        resetWord(checkWord.current);
+                    }
+                    indexRef.current = 0;
+
+                    resetMobileInput.current = true;
+
+                } else {
+                    indexRef.current++;
+                }
+            } else if (e.code === 'Backspace') {
+                if (indexRef.current > 0 && indexRef.current < checkWord.current.length) {
+                    if (indexRef.current === 1) {
+                        setWordInProg("_" + String(wordInProg).substring(indexRef.current));
+                    } else {
+                        setWordInProg(String(wordInProg).substring(0, indexRef.current - 1) + " _" + String(wordInProg).substring(indexRef.current));
+                    }
+                    indexRef.current--;
+                    currWord.current = currWord.current.substring(0, currWord.current.length - 1);
+                } 
             }
-            indexRef.current = 0;
+        };
 
-            resetMobileInput = true;
-        } else {
-            indexRef.current++;
-        }
-        } else if (e.code === 'Backspace') {
-        if (indexRef.current > 0 && indexRef.current < checkWord.length) {
-            if (indexRef.current === 1) {
-            setWordInProg("_" + String(wordInProg).substring(indexRef.current));
-            } else {
-            setWordInProg(String(wordInProg).substring(0, indexRef.current - 1) + " _" + String(wordInProg).substring(indexRef.current));
+        // updates the mobile input when a key is released
+        const handleKeyUp = (e) => {
+            if (resetMobileInput.current) {
+                const mobileInput = props.mobileInputRef.current;
+                mobileInput.value = '';
+                resetMobileInput.current = false;
             }
-            indexRef.current--;
-        } 
-        }
-    };
+        };
 
-    window.addEventListener('keydown', handleKeyDown);
+        window.addEventListener('keydown', handleKeyDown);
+        window.addEventListener('keyup', handleKeyUp);
 
-    return () => {
-        window.removeEventListener('keydown', handleKeyDown);
-    };
+        return () => {
+            window.removeEventListener('keydown', handleKeyDown);
+            window.removeEventListener('keyup', handleKeyUp);
+        };
+    
     }, [wordInProg]);
 
+    // stops the "wrong" animation
     React.useEffect(() => {
         if (wrongState) {
             setTimeout(()=>{
@@ -72,51 +94,9 @@ export function SongContainer(props) {
         }
     }, [wrongState])
 
-    async function recordScore() {
-        const score = {
-            title : gameData.songTitle,
-            percent : gameData.percent,
-            date : new Date().toLocaleDateString(),
-            time : props.timer,
-            username : gameData.playerName 
-        }
-        console.log(score);
-        try {
-            const response = await fetch('/api/score', {
-                method: 'POST',
-                headers: {'content-type': 'application/json'},
-                body: JSON.stringify(score),
-            });
-
-            const scores = await response.json();
-            localStorage.setItem('scores', JSON.stringify(scores));
-        } catch {
-            updateLocalScores(score);
-        }
-    }
-
-    function updateLocalScores(score) {
-        const data = JSON.parse(localStorage.getItem('scores'));
-        data.push(score);
-        localStorage.setItem('scores', JSON.stringify(data));
-    }
-
-    function finish() {
-        if (gameData.withFriend) {
-            const msg = {
-                type : 'finish',
-                time : props.timer,
-                friend : gameData.friendName
-            }
-            props.socket.send(JSON.stringify(msg));
-
-        } else {
-            props.setPlayState(PlayState.Finished);
-        }
-    }
-
+    // sends the newest word to friend
     function sendWord(word) {
-        const percent = getPercent();
+        const percent = getPercent(lyrics.current.length - 1);
 
         const msg = {
             type : 'progress',
@@ -127,39 +107,47 @@ export function SongContainer(props) {
         props.socket.send(JSON.stringify(msg));
     }
 
+    // sets the next word in the lyrics and checks if the game is finished
     function setNextWord() {
-        if (lyrics.length > 1) {
-            lyrics = lyrics.shift();
-            initializeWord(lyrics[0]);
+        if (lyrics.current.length > 1) {
+            lyrics.current.shift();
+            initializeWord(lyrics.current[0]);
 
         } else {
-            lyrics = lyrics.shift();
-            clearInterval(props.timerId);
+            lyrics.current.shift();
+            finished.current = true;
+            setWordInProg('');
 
-            recordScore();
-            finish();
+            props.recordScore();
+            props.finish();
         }
 
-        props.setPercent(getPercent());
+        props.setPercent(getPercent(lyrics.current.length));
     }
 
-    function getPercent() {
-        const percent = Math.round((1 - lyrics.length / originLen) * 100);
+    // returns the percent completed
+    function getPercent(length) {
+        const percent = Math.round((1 - length / originLen.current) * 100);
         return percent + '%';
     }
 
+    // resets the current word
     function resetWord(word) {
         const blankWord = createBlankWord(word);
         setWordInProg(blankWord);
+        currWord.current = '';
         setWrongState(true);
     }
 
+    // initializes the new word by creating a new check word and blank word
     function initializeWord(word) {
-        checkWord = createCheckWord(word);
-        const blankWord = createBlankWord(checkWord);
+        checkWord.current = createCheckWord(word);
+        currWord.current = '';
+        const blankWord = createBlankWord(checkWord.current);
         setWordInProg(blankWord);
     }
 
+    // creates and returns the blank word from the provided word
     function createBlankWord(word) {
         let blankWord = '';
         for (let i = 0; i < word.length; ++i) {
@@ -169,6 +157,7 @@ export function SongContainer(props) {
         return blankWord;
     }
 
+    // creates and returns the check word from the provided word
     function createCheckWord(word) {
         let checkWord = '';
         for (let i = 0; i < word.length; ++i) {
@@ -177,15 +166,16 @@ export function SongContainer(props) {
         return checkWord;
     }
 
+    // checks if a letter is an alphabettical character
     function isAlpha(ch) {
         return /^[A-Z]$/i.test(ch);
     }
 
+    // edits the lyrics to be the right length
     function editLyrics(lyricsStr) {
         let lyrics = lyricsStr.split(/\s+/);
 
         let index = lyrics.indexOf('...');
-        console.log(index);
         if (index > 0 && (lyrics.length - 1) > index) {
             if (lyrics[index + 1] === '*******') {
                 lyrics = lyrics.slice(0, index);
@@ -196,13 +186,13 @@ export function SongContainer(props) {
         if (num < 1) num = 1;
         lyrics = lyrics.slice(0, num);
 
-        originLen = lyrics.length;
+        originLen.current = lyrics.length;
 
         return lyrics;
     }
 
     return(
-        <div id="userView" className="songContainer">
+        <div id="userView" className="songContainer" ref={containerRef}>
             {displayedLyrics.map((word, index) => (
                 <div key={index} className='word right'>{word}</div>
             ))}
