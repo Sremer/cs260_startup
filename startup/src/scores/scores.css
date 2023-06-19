@@ -39,9 +39,9 @@ thead {
     animation: textEnter 1.5s;
 }
 
-input.stylish {
+/* input.stylish {
     margin: 0;
-}
+} */
 
 @keyframes textEnter {
     0% {

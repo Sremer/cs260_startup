@@ -90,3 +90,10 @@ For this deliverable I enabled real time head-to-head play.
 - **Frontend makes WebSocket connection** - done!
 - **Data sent over WebSocket connection** - done!
 - **WebSocket data displayed** - Players can play against each other in realtime.
+
+## React deliverable
+For this deliverable I converted the application over to use React.
+- **Bundled using Vite** - done!
+- **Components** - Each of my existing pages are components including several under the play page.
+- **Router** - Routes between all the pages as necessary.
+- **Hooks** - I used useState and useEffect in my components.

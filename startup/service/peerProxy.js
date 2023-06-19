@@ -43,6 +43,7 @@ function peerProxy(httpServer) {
                 }
 
             } else if (msg.type === 'progress') {
+                connection.finished = false;
                 const friend = connections.find(obj => obj.user === msg.friend);
                 if (friend !== undefined) {
                     friend.ws.send(JSON.stringify(msg));
@@ -51,6 +52,7 @@ function peerProxy(httpServer) {
                 }
 
             } else if (msg.type === 'setUser') {
+                console.log(msg.user);
                 connection.user = msg.user;
 
             } else if (msg.type === 'finish') {
