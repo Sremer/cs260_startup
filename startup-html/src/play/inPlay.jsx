@@ -38,6 +38,7 @@ export function InPlay({ changeToFinished }) {
     // clears the timer then sends a message to ws or sets the finish display
     const finish = () => {
         clearInterval(timerId.current);
+        console.log(timer);
 
         if (gameData.withFriend) {
             const msg = {
@@ -47,6 +48,8 @@ export function InPlay({ changeToFinished }) {
             }
             socket.current.send(JSON.stringify(msg));
 
+            localStorage.setItem('time', timer);
+
         } else {
             setFinishDisplay();
         }
@@ -54,7 +57,8 @@ export function InPlay({ changeToFinished }) {
 
     // changes to the finish display and saves the time
     function setFinishDisplay() {
-        localStorage.setItem('time', timer);
+        console.log(timer);
+        if (!gameData.withFriend) localStorage.setItem('time', timer);
         changeToFinished();
     }
 
@@ -97,8 +101,8 @@ export function InPlay({ changeToFinished }) {
                 socket.send(JSON.stringify(msg));
 
             } else if (msg.type === 'finish') {
-                setFinishDisplay();
                 localStorage.setItem('friendTime', msg.time);
+                setFinishDisplay();
 
             } else {
                 setDisplayedFriendLyrics(prevState => [...prevState, msg.word.toLowerCase()]);
@@ -140,7 +144,7 @@ export function InPlay({ changeToFinished }) {
 
     return (
         <div id="playMode">
-            <div id="songTitle"></div>
+            <div id="songTitle"> {gameData.songTitle} </div>
             <section id="playContainer">
                 <section id="leftSide" className={gameData.withFriend ? '' : 'hide'}>
                     <div id="friendInfo">
