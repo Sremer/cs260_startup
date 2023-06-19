@@ -46,7 +46,7 @@ export function Login() {
 }
 
   return (
-    <main>
+    <>
       <main>
             <div className={`h1-container ${exitState ? 'exitTitle' : '' }`}>
                 <h1>ditty</h1>
@@ -75,6 +75,11 @@ export function Login() {
                 <button id="signup" className="normal dark" onClick={() => signUp()}>sign-up</button></div>
             </section>
         </main>
-    </main>
+
+        <footer>
+            <div>Seth Remer</div>
+            <div><a className="bottomTag" href="https://github.com/Sremer/cs260_startup"><img id="githubLogo" alt="github" src="../resources/github-mark-white.png"/></a></div>
+        </footer>
+    </>
   );
 }

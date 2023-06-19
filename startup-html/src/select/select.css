@@ -14,28 +14,11 @@ main {
     text-align: center;
 }
 
-footer {
-    background:rgb(10, 10, 10);
-    color: rgb(212, 211, 211);
-    margin: 0;
-}
-
 #scoresBtn {
     text-align: left;
     margin: 5px;
     flex: 0;
 }
-
-/* h2 {
-    font-weight: 300;
-    text-align: center;
-    color: rgb(212, 211, 211);
-    font-family: 'Roboto Mono', monospace;
-    font-size: 5em;
-    margin: 0.5em;
-
-    animation: textEnter 2.2s;
-} */
 
 select {
     background-color: grey;
